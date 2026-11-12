@@ -221,6 +221,28 @@
 .digital-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
 .digital-actions a{font-size:11px;font-weight:750;color:#485a7a}
 @media(max-width:760px){.mag-accordion-open{font-size:9px}.stats-explain{margin-top:-12px}}
+
+/* Pre-launch readability improvements: all-summary outline, release dates, and per-service disclosures */
+.stats .stat:first-child{border:2px solid var(--ink);padding:17px 19px}
+.mag-accordion-date{background:#f1f3f6;color:var(--ink)}
+.mag-accordion-body .date-label,.date-label{color:var(--ink)}
+.digital-service-list{display:grid;gap:9px;margin:11px 0 13px}
+.digital-folds .digital-service-fold{border:1px solid #dce2e9;background:#fff;border-radius:11px;overflow:hidden;margin:0}
+.digital-folds .digital-service-fold>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 14px;color:var(--ink);font-weight:800;font-size:13px}
+.digital-folds .digital-service-fold>summary::-webkit-details-marker{display:none}
+.digital-folds .digital-service-fold[open]{border-color:#9da8ba}
+.digital-service-action{font-size:11px;color:#66727d;font-weight:650;white-space:nowrap}
+.digital-service-fold[open] .digital-service-action span{display:inline-block;transform:rotate(180deg)}
+.digital-service-detail{border-top:1px solid #e7eaf0;padding:13px 14px 15px;background:#fcfcfe}
+.digital-service-verdict{font-size:15px;font-weight:850;line-height:1.5;background:#f0f2f7;color:#35435b;border-radius:9px;padding:10px 12px}
+.digital-service-verdict.unknown{color:#566171;background:#f1f3f6}
+.digital-service-verdict.no{color:#755561;background:#f7f2f4}
+.digital-service-pages{font-size:12px;color:#39475a;font-weight:750;line-height:1.7;margin:11px 0 4px}
+.digital-source{font-size:12px;margin:10px 0 0}
+.digital-folds .digital-past-fold{margin-top:13px;border-top:1px solid #e4e8ed;padding-top:11px}
+.digital-folds .digital-past-fold>summary{font-size:12px;color:#52617d;cursor:pointer;font-weight:750;list-style:revert;padding:2px 0 2px 13px}
+.digital-past-content{padding-top:9px}
+.digital-folds .digital-record-link{margin-top:4px;font-size:12px}
 </style>
 </head>
 <body>
@@ -255,7 +277,6 @@
     <div class="stat"><span class="stat-value" id="coverCount">—</span><span class="stat-label">うち表紙掲載</span></div>
     <div class="stat"><span class="stat-value" id="bonusCount">—</span><span class="stat-label">うち関連付録あり</span></div>
   </div>
-  <p class="stats-explain">左の「掲載情報の総数」には、表紙掲載や関連付録ありの雑誌も含まれます。通常版・増刊などは別々に数えています。※今後発売予定で掲載を確認できたものが対象です。</p>
   <div class="section-head"><div><h2>雑誌を探す</h2><p>条件を組み合わせて、欲しい一冊を見つけよう。</p></div><span class="minor" id="resultCount"></span></div>
   <section class="filters" aria-label="絞り込み条件">
     <div class="search-row">
@@ -498,27 +519,24 @@ function digitalRecordsFor(m,service){
 function cardDigitalSummary(m){
  const services=['dmag','rakuten','ku','kindle'];
  const records=[...PUBLIC_DIGITAL_HISTORY,...personalDigitalHistory];
- const currentItems=services.map(service=>{
-  const r=records.filter(x=>x.title===magazineFamily(m)&&x.service===service&&x.issue===m.issue).sort((a,b)=>String(b.checkedAt||'').localeCompare(String(a.checkedAt||'')))[0];
-  const past=digitalRecordsFor(m,service).filter(x=>x.status==='yes');
-  const state=r?(r.status==='yes'?'配信を確認':r.status==='no'?'配信対象外を確認':'配信は未確認'):'配信は未確認';
-  const pages=r?(r.pages==='yes'?'KEY TO LITのページも確認':r.pages==='partial'?'KEY TO LITのページは一部確認':r.pages==='no'?'KEY TO LITのページは収録なし':'KEY TO LITのページは未確認'):'KEY TO LITのページは未確認';
-  return '<div class="service-box"><strong class="service-name">'+escapeHtml(DIGITAL_SERVICE_NAMES[service])+'</strong><span class="service-state">今号：<strong>'+escapeHtml(state)+'</strong></span><span class="service-state service-pages">'+escapeHtml(pages)+'</span>'+(past.length?'<span class="service-past">参考：過去'+past.length+'号の配信を確認</span>':'')+'</div>';
- }).join('');
  const sections=services.map(service=>{
+  const r=records.filter(x=>x.title===magazineFamily(m)&&x.service===service&&x.issue===m.issue)
+   .sort((a,b)=>String(b.checkedAt||'').localeCompare(String(a.checkedAt||'')))[0];
   const history=digitalRecordsFor(m,service);
-  const items=history.length?history.map(r=>{
-    const url=digitalSafeUrl(r.source);
-    const status=r.status==='yes'?'配信あり':r.status==='no'?'配信対象外':'未確認';
-    return '<div class="history-mini"><strong>'+escapeHtml(r.issue)+'</strong> · '+status+(r.releaseDate?' · '+escapeHtml(r.releaseDate):'')+(url?' · <a href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">確認元</a>':'')+'</div>';
-  }).join(''):'<p class="card-digital-note">過去号の情報はまだありません。</p>';
-  return '<div class="history-service"><strong>'+escapeHtml(DIGITAL_SERVICE_NAMES[service])+'</strong>'+items+'</div>';
+  const confirmedPast=history.filter(x=>x.status==='yes');
+  const state=r?(r.status==='yes'?'この号の配信を確認':r.status==='no'?'この号は配信対象外（確認済み）':'この号の配信は未確認'):'この号の配信は未確認';
+  const stateClass=r&&r.status==='yes'?'yes':r&&r.status==='no'?'no':'unknown';
+  const pages=r?(r.pages==='yes'?'KEY TO LITの掲載ページも確認済み':r.pages==='partial'?'KEY TO LITの掲載ページは一部確認済み':r.pages==='no'?'KEY TO LITの掲載ページは収録なし':'KEY TO LITの掲載ページは未確認'):'KEY TO LITの掲載ページは未確認';
+  const source=r&&digitalSafeUrl(r.source)?'<a href="'+escapeHtml(digitalSafeUrl(r.source))+'" target="_blank" rel="noopener noreferrer">確認元を見る</a>':'';
+  const historyItems=history.length?history.map(h=>{
+   const url=digitalSafeUrl(h.source);
+   const status=h.status==='yes'?'配信あり':h.status==='no'?'配信対象外':'未確認';
+   return '<div class="history-mini"><strong>'+escapeHtml(h.issue)+'</strong> · '+escapeHtml(status)+(h.releaseDate?' · '+escapeHtml(h.releaseDate):'')+(url?' · <a href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">確認元</a>':'')+'</div>';
+  }).join(''):'<p class="card-digital-note">過去号の確認情報はありません。</p>';
+  const prior=confirmedPast.length?'<span class="service-past">参考：過去'+confirmedPast.length+'号の配信を確認</span>':'';
+  return '<details class="digital-service-fold"><summary><span class="digital-service-name">'+escapeHtml(DIGITAL_SERVICE_NAMES[service])+'</span><span class="digital-service-action">タップして確認 <span aria-hidden="true">⌄</span></span></summary><div class="digital-service-detail"><div class="digital-service-verdict '+stateClass+'">'+escapeHtml(state)+'</div><p class="digital-service-pages">'+escapeHtml(pages)+'</p>'+(r&&r.releaseDate?'<p class="card-digital-note">電子版の配信日：'+escapeHtml(r.releaseDate)+'</p>':'')+prior+(source?'<p class="digital-source">'+source+'</p>':'')+'<details class="digital-past-fold"><summary>過去号の配信情報を見る</summary><div class="digital-past-content">'+historyItems+'<p class="card-digital-note">過去号の配信実績は、今号の配信を保証するものではありません。</p></div></details></div></details>';
  }).join('');
- return '<div class="card-digital"><div class="card-digital-head"><span class="card-digital-title">電子版で読める？</span></div>'+
- '<p class="digital-quicknote">配信状況と「KEY TO LITのページが読めるか」は別です。未確認は、配信なしという意味ではありません。</p>'+
- '<div class="service-row">'+currentItems+'</div>'+
- '<details><summary>過去号の配信情報を詳しく見る</summary>'+sections+
- '<button type="button" class="digital-record-link" data-digital-jump="'+escapeHtml(magazineFamily(m))+'">電子版タブで詳しく確認する</button></details></div>';
+ return '<div class="card-digital digital-folds"><div class="card-digital-head"><span class="card-digital-title">電子版で読める？</span></div><p class="digital-quicknote">確認したいサービスをタップしてください。未確認は「配信なし」という意味ではありません。</p><div class="digital-service-list">'+sections+'</div><button type="button" class="digital-record-link" data-digital-jump="'+escapeHtml(magazineFamily(m))+'">電子版タブで詳しく確認する</button></div>';
 }
 function renderDigitalList(){
  const service=$('#digitalListService').value, mode=$('#digitalListMode').value;
@@ -586,7 +604,7 @@ function deleteDigitalHistory(id){if(!confirm('この配信履歴を端末から
 function exportDigitalHistory(){const data={app:'KEY_TO_LIT_DIGITAL_RESEARCH',formatVersion:1,exportedAt:new Date().toISOString(),records:personalDigitalHistory};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json;charset=utf-8'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='key-to-lit-digital-history-'+todayTokyo()+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);notify('配信履歴のJSONを書き出しました（購入情報は含みません）')}
 function initDigitalHistory(){loadDigitalHistory();$('#digitalTitle').innerHTML=digitalTitles().map(x=>'<option value="'+escapeHtml(x)+'">'+escapeHtml(x)+'</option>').join('');$('#digitalCheckedAt').value=todayTokyo();$('#digitalTitle').addEventListener('change',renderDigitalHistory);$('#digitalService').addEventListener('change',renderDigitalHistory);$('#digitalRecordForm').addEventListener('submit',addDigitalHistory);$('#digitalExport').addEventListener('click',exportDigitalHistory);$('#digitalHistory').addEventListener('click',e=>{const btn=e.target.closest('[data-digital-delete]');if(btn)deleteDigitalHistory(btn.dataset.digitalDelete)});renderDigitalHistory()}
 
-function makeDetails(m){const interview=m.interviewStatus|| (m.types.includes('interview')?'yes':'unknown');const yesNoUnknown=v=>v===true||v==='yes'?'あり':v===false||v==='no'?'なし（確認済み）':'未確認';const d=m.digital==='yes'?'掲載ページを確認済み':m.digital==='partial'?'一部のみ確認済み':m.digital==='no'?'対象ページなし（確認済み）':'未確認';return '<div class="date-label">'+escapeHtml(dateLabel(m.date))+' 発売　／　'+yen(m.price)+'</div><h3 class="modal-title">'+escapeHtml(m.name+' '+m.issue)+'</h3><div class="edition">'+escapeHtml(m.edition)+'</div><div class="tags" style="margin-top:12px">'+tagsFor(m)+'</div><div class="detail-section"><h4>掲載内容</h4><p>'+escapeHtml(m.summary)+'</p><p style="margin-top:8px">'+escapeHtml(m.details)+'</p></div><div class="detail-section"><h4>出演メンバー</h4><p>'+escapeHtml(m.members.join('・'))+'</p></div><div class="detail-section"><h4>付録・ピンナップ</h4><p>'+escapeHtml(m.bonusText)+'</p></div><div class="detail-section"><h4>電子版で読める？</h4><p><strong>'+escapeHtml(d)+'</strong> — '+escapeHtml(m.digitalNote)+'</p><p style="margin-top:10px"><button type="button" class="btn secondary small" data-digital-jump="'+escapeHtml(magazineFamily(m))+'">この雑誌の過去号配信履歴を見る</button></p></div><div class="detail-section"><h4>情報元・購入先</h4><p>販売状況はリアルタイム表示ではありません。リンク先で確認してください。</p><div class="source-links"><a href="'+escapeHtml(m.source)+'" target="_blank" rel="noopener noreferrer">掲載情報の出典 ↗</a><a href="'+escapeHtml(m.shop)+'" target="_blank" rel="noopener noreferrer">購入・書店案内 ↗</a></div></div>'}
+function makeDetails(m){const interview=m.interviewStatus|| (m.types.includes('interview')?'yes':'unknown');const yesNoUnknown=v=>v===true||v==='yes'?'あり':v===false||v==='no'?'なし（確認済み）':'未確認';const d=m.digital==='yes'?'掲載ページを確認済み':m.digital==='partial'?'一部のみ確認済み':m.digital==='no'?'対象ページなし（確認済み）':'未確認';return '<div class="date-label">'+escapeHtml(dateLabel(m.date))+' 発売　／　'+yen(m.price)+'</div><h3 class="modal-title">'+escapeHtml(m.name+' '+m.issue)+'</h3><div class="edition">'+escapeHtml(m.edition)+'</div><div class="tags" style="margin-top:12px">'+tagsFor(m)+'</div><div class="detail-section"><h4>掲載内容</h4><p>'+escapeHtml(m.summary)+'</p><p style="margin-top:8px">'+escapeHtml(m.details)+'</p></div><div class="detail-section"><h4>出演メンバー</h4><p>'+escapeHtml(m.members.join('・'))+'</p></div><div class="detail-section"><h4>付録・ピンナップ</h4><p>'+escapeHtml(m.bonusText)+'</p></div>'+cardDigitalSummary(m)+'<div class="detail-section"><h4>情報元・購入先</h4><p>販売状況はリアルタイム表示ではありません。リンク先で確認してください。</p><div class="source-links"><a href="'+escapeHtml(m.source)+'" target="_blank" rel="noopener noreferrer">掲載情報の出典 ↗</a><a href="'+escapeHtml(m.shop)+'" target="_blank" rel="noopener noreferrer">購入・書店案内 ↗</a></div></div>'}
 function selectOpts(options,selected){return options.map(([v,l])=>'<option value="'+escapeHtml(v)+'"'+(String(v)===String(selected)?' selected':'')+'>'+escapeHtml(l)+'</option>').join('')}
 function openDialog(id,focusManage=false){const m=MAGAZINES.find(x=>x.id===id);if(!m)return;currentMag=m;const e=entryFor(id);let body=makeDetails(m);body+='<div class="detail-section" id="manageArea"><h4>自分の購入・受取管理</h4><p class="hint">この情報は自分の端末にのみ保存され、運営者には送信されません。</p>'+(!canPersist?'<div class="alert" style="margin-top:11px">このプレビューでは端末に保存できないため、MY MAGAZINEへの一時反映となります。閉じる前にバックアップしてください。</div>':'')+'<form id="purchaseForm"><div class="field-grid"><div class="field"><label for="inputStatus">購入状況</label><select id="inputStatus" name="status">'+selectOpts(Object.entries(STATUS),e.status)+'</select></div><div class="field"><label for="inputStore">購入先</label><select id="inputStore" name="store">'+selectOpts(STORES.map(s=>[s,s||'未選択']),e.store)+'</select></div><div class="field"><label for="inputQty">冊数</label><input id="inputQty" name="quantity" type="number" min="1" max="99" value="'+e.quantity+'" required></div><div class="field"><label for="inputPickup">受取予定日（任意）</label><input id="inputPickup" name="pickupDate" type="date" value="'+escapeHtml(e.pickupDate)+'"></div><div class="field"><label for="inputReceivedDate">実際の受取日（受取済みの場合）</label><input id="inputReceivedDate" name="receivedDate" type="date" value="'+escapeHtml(e.receivedDate||'')+'"></div></div><div class="field" style="margin:14px 0"><label style="display:flex;gap:8px;align-items:center;font-size:12px;color:var(--ink)"><input id="inputPaid" name="paid" type="checkbox" style="width:auto;margin:0"'+(e.paid?' checked':'')+'> 支払い済みにチェックする</label></div><div class="field"><label for="inputNotes">メモ（任意・注文番号などの機密情報は非推奨）</label><textarea id="inputNotes" name="notes" maxlength="1000" placeholder="例：セブンイレブンで受取予定">'+escapeHtml(e.notes)+'</textarea></div><div class="modal-actions"><button type="submit" class="btn">'+(canPersist?'保存してMY MAGAZINEへ':'一時反映してMY MAGAZINEへ')+'</button><button type="button" class="btn secondary" id="modalToMy">MY MAGAZINEへ</button></div></form></div>';$('#dialogBody').innerHTML=body;const dialog=$('#itemDialog');if(!dialog.open)dialog.showModal();if(focusManage)setTimeout(()=>{$('#manageArea')?.scrollIntoView({block:'nearest',behavior:'smooth'});$('#inputStatus')?.focus({preventScroll:true})},90);}
 function saveFromForm(e){
