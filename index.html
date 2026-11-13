@@ -520,7 +520,7 @@ function cardDigitalSummary(m){
  const services=['dmag','rakuten','ku','kindle'];
  const records=[...PUBLIC_DIGITAL_HISTORY,...personalDigitalHistory];
  const sections=services.map(service=>{
-  const r=records.filter(x=>x.title===magazineFamily(m)&&x.service===service&&x.issue===m.issue)
+  const r=records.filter(x=>x.title===magazineFamily(m)&&x.service===service&&x.issue===m.issue&&(!x.magazineId||x.magazineId===m.id))
    .sort((a,b)=>String(b.checkedAt||'').localeCompare(String(a.checkedAt||'')))[0];
   const history=digitalRecordsFor(m,service);
   const confirmedPast=history.filter(x=>x.status==='yes');
@@ -545,7 +545,7 @@ function renderDigitalList(){
  const groups=[]; const seen=new Set();
  for(const m of [...MAGAZINES].sort((a,b)=>compareMagazine(a,b,'desc'))){
   const key=magazineFamily(m)+'|'+m.issue; if(seen.has(key))continue;seen.add(key);
-  const same=records.filter(r=>r.title===magazineFamily(m)&&r.issue===m.issue).sort((a,b)=>String(b.checkedAt||'').localeCompare(String(a.checkedAt||'')));
+  const same=records.filter(r=>r.title===magazineFamily(m)&&r.issue===m.issue&&(!r.magazineId||r.magazineId===m.id)).sort((a,b)=>String(b.checkedAt||'').localeCompare(String(a.checkedAt||'')));
   const current=same[0];
   const past=records.filter(r=>r.title===magazineFamily(m)&&r.issue!==m.issue&&r.status==='yes');
   if(mode==='confirmed'&&(!current||current.status!=='yes'))continue;
@@ -756,7 +756,43 @@ async function loadApprovedMagazines(){
   }catch(err){console.warn('承認済み雑誌データを読み込めませんでした。元の一覧を表示します。',err)}
 }
 
-loadApprovedMagazines().then(init);
+// スプレッドシートで承認されたJSONを読み込みます。読み込み失敗時は従来データを利用。
+// 個人の購入記録（localStorage）は変更しません。
+async function loadSheetCatalog(){
+  try{
+    const response=await fetch('./catalog-magazines.json',{cache:'no-store'});
+    if(!response.ok)return;
+    const raw=await response.json();
+    if(!Array.isArray(raw)||raw.length>250)throw Error('catalog format');
+    const valid=[];const seen=new Set();
+    for(const x of raw){
+      if(!x||typeof x!=='object'||Array.isArray(x)||typeof x.id!=='string'||seen.has(x.id))continue;
+      if(!/^[a-zA-Z0-9-]{3,100}$/.test(x.id)||typeof x.name!=='string'||typeof x.issue!=='string'||!/^(20\d{2})-(0[1-9]|1[0-2])-([0-2]\d|3[01])$/.test(x.date||''))continue;
+      if(!Array.isArray(x.members)||!x.members.length||!x.members.every(v=>MEMBERS.includes(v)))continue;
+      if(!['front','inside','back'].includes(x.cover)||!Array.isArray(x.types))continue;
+      valid.push({...x,price:Number.isInteger(x.price)?x.price:null,bonus:x.bonus===true?true:x.bonus===false?false:null});seen.add(x.id);
+    }
+    // 部分的・破損したエクスポートで既存の雑誌を消さない。
+    if(valid.length>=MAGAZINES.length && MAGAZINES.every(m=>seen.has(m.id)))MAGAZINES.splice(0,MAGAZINES.length,...valid);
+    else console.warn('不完全なcatalog-magazines.jsonのため、埋め込みデータを使用');
+  }catch(e){console.warn('雑誌データを読み込めず、既存データを使用',e)}
+}
+async function loadSheetDigital(){
+  try{
+    const response=await fetch('./digital-status.json',{cache:'no-store'});
+    if(!response.ok)return;
+    const raw=await response.json();
+    if(!Array.isArray(raw)||raw.length>1500)throw Error('digital format');
+    const clean=raw.filter(x=>x&&typeof x==='object'&&typeof x.title==='string'&&typeof x.issue==='string'&&['dmag','rakuten','ku','kindle'].includes(x.service)&&['yes','no','unknown'].includes(x.status)&&['yes','no','partial','unknown'].includes(x.pages)).map(x=>({...x,source:digitalSafeUrl(x.source||'')}));
+    // 部分的な更新データで初期の過去号の履歴を消さない。
+    const key=x=>[x.magazineId||'',x.title,x.issue,x.service].join('|');
+    const merged=new Map(PUBLIC_DIGITAL_HISTORY.map(x=>[key(x),x]));
+    clean.forEach(x=>merged.set(key(x),x));
+    PUBLIC_DIGITAL_HISTORY.splice(0,PUBLIC_DIGITAL_HISTORY.length,...merged.values());
+  }catch(e){console.warn('電子版の共通データを読み込めず、既存履歴を使用',e)}
+}
+Promise.all([loadSheetCatalog(),loadSheetDigital()]).then(loadApprovedMagazines).then(init);
+
 </script>
 </body>
 </html>
