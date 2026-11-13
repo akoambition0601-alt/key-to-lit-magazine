@@ -848,5 +848,34 @@
     "bonus": null,
     "source": "https://www.fujisan.co.jp/product/1281704307/b/list/",
     "publicVisible": true
+  },
+  {
+    "types": [],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LIT祝デビュー記念グラビア・スペシャルインタビュー。中村嶺亜の漫画家デビュー企画「今日もKEY TO LIT」Vol.1も掲載。特典カードは『薬屋のひとりごと』関連のものであり、KEY TO LIT関連付録としては扱わない。",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "楽天ブックス販売商品説明で発売日・価格・内容を確認。誌面ページ数と電子版でのKEY TO LIT掲載は未確認。公開運用テスト（23→24冊）用。",
+    "summary": "詳しくは情報元をご確認ください。",
+    "details": "",
+    "shop": "https://books.rakuten.co.jp/rb/18896528/",
+    "id": "betsucomi-202701",
+    "name": "ベツコミ",
+    "issue": "2027年1月号",
+    "edition": "通常版",
+    "date": "2026-12-11",
+    "members": [
+      "岩﨑大昇",
+      "井上瑞稀",
+      "中村嶺亜",
+      "猪狩蒼弥",
+      "佐々木大光"
+    ],
+    "cover": "inside",
+    "price": 699,
+    "bonus": null,
+    "source": "https://books.rakuten.co.jp/rb/18896528/",
+    "publicVisible": true
   }
 ]
