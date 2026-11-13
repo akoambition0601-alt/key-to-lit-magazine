@@ -206,7 +206,7 @@
 .tab.active,.btn:not(.secondary):not(.ghost):not(.danger),.mobile-tab.active{background:#344159}
 .tab.active:hover,.btn:not(.secondary):not(.ghost):not(.danger):hover{background:#4c5870}
 .chip:not([class*="member-"]).active{background:#344159;color:white;border-color:#344159}
-.chip.member-all.active{background:#344159;border-color:#344159}
+.chip.member-all.active{background:#344159;border-color:transparent;box-shadow:none}
 /* Member colors intentionally retained in member selection chips */
 .stats-explain{margin:-16px 0 10px;font-size:11px;color:#697483;line-height:1.7}
 .stat .stat-label{line-height:1.55}
@@ -291,6 +291,18 @@
     .purchase-guide strong{color:var(--ink)}
     @media(prefers-reduced-motion:reduce){.drawer-arrow{transition:none}}
 
+
+/* 補助導線：アンケート */
+.feedback-nav-row{display:flex;justify-content:flex-end;padding:0 0 8px}
+.feedback-nav-trigger{background:none;border:0;color:var(--muted);font-size:11px;font-weight:700;padding:3px 2px;text-decoration:underline;text-underline-offset:3px}
+.feedback-nav-trigger:hover{color:var(--ink)}
+.feedback-fields{display:grid;gap:14px}
+.feedback-fields label{display:block;font-size:12px;font-weight:750;margin-bottom:5px}
+.feedback-fields select,.feedback-fields textarea{display:block;width:100%;font:inherit;border:1px solid var(--line);border-radius:10px;background:white;padding:10px;color:var(--ink)}
+.feedback-fields textarea{min-height:95px;resize:vertical}
+.feedback-note{color:var(--muted);font-size:11px;line-height:1.7;margin-top:10px}
+@media(max-width:720px){.feedback-nav-row{justify-content:flex-end;padding:0 4px 7px}.feedback-nav-trigger{font-size:10px}}
+
 </style>
 </head>
 <body>
@@ -304,6 +316,7 @@
       <a href="#my" class="tab" id="tabMy" data-tab="my">MY MAGAZINE <span class="count" id="navCount"></span></a>
     </nav>
   </div>
+  <div class="container feedback-nav-row"><button type="button" class="feedback-nav-trigger" id="openFeedback">ご意見・アンケート</button></div>
 </header>
 <main class="container">
 <section class="hero" id="heroSection" aria-label="サイト紹介">
@@ -352,9 +365,9 @@
   <div class="digital-list-controls filters">
     <div class="filter-grid">
       <div class="filter-group"><label for="digitalListService">サービス</label><select id="digitalListService"><option value="dmag">dマガジン</option><option value="rakuten">楽天マガジン</option><option value="ku">Kindle Unlimited（読み放題）</option><option value="kindle">Kindle版（単品購入）</option></select></div>
-      <div class="filter-group"><label for="digitalListMode">表示する情報</label><select id="digitalListMode"><option value="confirmed">配信確認済み</option><option value="history">過去号の配信実績あり</option><option value="all">すべて表示</option></select></div>
+      <div class="filter-group"><label for="digitalListMode">表示する情報</label><select id="digitalListMode"><option value="confirmed">配信確認済み</option><option value="history">過去号の配信実績あり</option></select></div>
     </div>
-    <div class="digital-filter-help"><p><strong>配信確認済み：</strong>選んだサービスで、この号の電子版が配信されていると確認できたもの。</p><p><strong>過去号の配信実績あり：</strong>以前の号の配信を確認できた雑誌。今号も配信されるとは限りません。</p><p><strong>すべて表示：</strong>配信が未確認の雑誌も含めて表示します。「未確認」は「配信なし」ではありません。</p></div>
+    <div class="digital-filter-help"><p><strong>配信確認済み：</strong>選んだサービスで、この号の電子版が配信されていると確認できたもの。</p><p><strong>過去号の配信実績あり：</strong>以前の号の配信を確認できた雑誌。今号も配信されるとは限りません。</p></div>
   </div>
   <p class="minor" id="digitalListCount" aria-live="polite"></p>
   <div class="digital-issue-list" id="digitalIssueList" aria-live="polite"></div>
@@ -429,6 +442,21 @@
   <a href="#digital" class="mobile-tab" data-tab="digital"><span>電子版</span></a>
   <a href="#my" class="mobile-tab" data-tab="my"><span>MY MAGAZINE</span><span class="mobile-nav-count" id="navCountMobile"></span></a>
 </nav>
+<dialog id="feedbackDialog" aria-labelledby="feedbackHeading">
+ <div class="modal-head"><h2 id="feedbackHeading">サイトのご意見・アンケート</h2><button type="button" class="modal-close" id="closeFeedback" aria-label="閉じる">×</button></div>
+ <div class="modal-body">
+  <p class="minor">サイト改善のためのアンケートです。すべて任意回答です。</p>
+  <div class="feedback-fields" style="margin-top:16px">
+   <div><label for="feedbackEase">使いやすさ</label><select id="feedbackEase"><option value="">選択してください</option><option>とても使いやすい</option><option>使いやすい</option><option>ふつう</option><option>使いにくい</option><option>とても使いにくい</option></select></div>
+   <div><label for="feedbackUseful">便利だった機能</label><select id="feedbackUseful"><option value="">選択してください</option><option>雑誌を探す</option><option>カレンダー</option><option>電子版</option><option>MY MAGAZINE</option><option>まだ分からない</option></select></div>
+   <div><label for="feedbackShop">追加してほしい購入先</label><select id="feedbackShop"><option value="">特になし・未回答</option><option>HMV&BOOKS</option><option>ヨドバシ.com</option><option>紀伊國屋書店</option><option>その他</option></select></div>
+   <div><label for="feedbackComment">改善してほしい点・追加してほしい機能</label><textarea id="feedbackComment" maxlength="1000" placeholder="自由にご記入ください（任意）"></textarea></div>
+  </div>
+  <div class="feedback-note">※ 回答の送信先は現在準備中です。今は回答内容をコピーできます。氏名・連絡先などの個人情報は入力しないでください。</div>
+  <div class="modal-actions"><button type="button" class="btn" id="copyFeedback">回答内容をコピー</button><button type="button" class="btn secondary" id="cancelFeedback">閉じる</button></div>
+  <p class="hint" id="feedbackCopyStatus" aria-live="polite" style="margin-top:9px"></p>
+ </div>
+</dialog>
 <dialog id="itemDialog" aria-labelledby="dialogHeading">
  <div class="modal-head"><h2 id="dialogHeading">雑誌の詳細・購入管理</h2><button id="closeDialog" class="modal-close" aria-label="閉じる">×</button></div>
  <div class="modal-body" id="dialogBody"></div>
@@ -627,9 +655,9 @@ function renderDigitalList(){
   groups.push('<article class="digital-issue"><div class="digital-issue-date">'+escapeHtml(dateLabel(m.date))+' 発売</div><h3>'+escapeHtml(magazineFamily(m)+' '+m.issue)+'</h3><div class="digital-verdict '+cls+'">'+escapeHtml(state)+'</div><p class="digital-pages">'+escapeHtml(pages)+'</p>'+(current&&current.releaseDate?'<p class="digital-meta">配信日：'+escapeHtml(current.releaseDate)+'</p>':'')+caution+'<div class="digital-prior"><span class="digital-prior-label">参考情報</span><span>'+escapeHtml(prior)+'</span><small>過去の配信は、今号の配信を保証するものではありません。</small></div><div class="digital-actions">'+source+'<button type="button" class="btn secondary small" data-digital-list-jump="'+escapeHtml(magazineFamily(m))+'">過去号を詳しく見る</button></div></article>');
  }
  $('#digitalListCount').textContent=groups.length+'誌（号数単位）';
- const emptyMessage=mode==='confirmed'?'このサービスで配信を確認できた雑誌は、まだありません。':mode==='history'?'過去号の配信情報が登録されている雑誌は、まだありません。':'表示できる雑誌がありません。検索条件を変更してみてください。';
- root.innerHTML=groups.length?groups.join(''):'<div class="empty"><strong>この条件に当てはまる雑誌はありません</strong><p>'+emptyMessage+(mode!=='all'?' 配信が不明な雑誌もあります。<button type="button" class="text-btn" id="digitalShowAllBtn">すべて表示</button>で確認できます。':'')+'</p></div>';
- const showAll=$('#digitalShowAllBtn');if(showAll)showAll.addEventListener('click',()=>{$('#digitalListMode').value='all';renderDigitalList()});
+ const emptyMessage=mode==='confirmed'?'このサービスで配信を確認できた雑誌は、まだありません。未確認の雑誌は一覧に含めていません。':'過去号の配信情報が登録されている雑誌は、まだありません。';
+ root.innerHTML=groups.length?groups.join(''):'<div class="empty"><strong>この条件に当てはまる雑誌はありません</strong><p>'+emptyMessage+'</p></div>';
+
 }
 function renderMagazines(){
  const allUpcoming=MAGAZINES.filter(m=>m.date>=todayTokyo()&&m.featureStatus!=='unconfirmed');
@@ -930,6 +958,23 @@ function applyPublicVisibility(){
   MAGAZINES.splice(0,MAGAZINES.length,...visible);
 }
 Promise.all([loadSheetCatalog(),loadSheetDigital()]).then(loadApprovedMagazines).then(()=>{applyPublicVisibility();init();});
+
+
+(function(){
+ const dialog=document.getElementById('feedbackDialog');
+ const open=document.getElementById('openFeedback');
+ const close=()=>dialog.close();
+ open.addEventListener('click',()=>dialog.showModal());
+ document.getElementById('closeFeedback').addEventListener('click',close);
+ document.getElementById('cancelFeedback').addEventListener('click',close);
+ dialog.addEventListener('click',event=>{if(event.target===dialog)close()});
+ document.getElementById('copyFeedback').addEventListener('click',async()=>{
+  const v=id=>document.getElementById(id).value||'未回答';
+  const answer=['サイトの使い心地アンケート','使いやすさ：'+v('feedbackEase'),'便利だった機能：'+v('feedbackUseful'),'追加希望の購入先：'+v('feedbackShop'),'改善点・要望：'+v('feedbackComment')].join('\n');
+  try{await navigator.clipboard.writeText(answer);document.getElementById('feedbackCopyStatus').textContent='回答内容をコピーしました。現在、サイトへの回答送信機能は準備中です。'}
+  catch(e){document.getElementById('feedbackCopyStatus').textContent='コピーできませんでした。ブラウザのコピー権限をご確認ください。'}
+ });
+})();
 
 </script>
 </body>
