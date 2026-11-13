@@ -819,5 +819,34 @@
     "bonus": null,
     "source": "https://www.andgirl.jp/information",
     "publicVisible": true
+  },
+  {
+    "types": [],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LITが表紙・巻頭特集。独占ロンググラビア＆インタビューを掲載。ページ数・付録の有無は未確認。",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "電子版の配信・掲載ページは未確認",
+    "summary": "詳しくは情報元をご確認ください。",
+    "details": "",
+    "shop": "https://www.fujisan.co.jp/product/1281704307/b/list/",
+    "id": "jmovie-202612-vol137",
+    "name": "J Movie Magazine",
+    "issue": "Vol.137",
+    "edition": "通常版",
+    "date": "2026-12-01",
+    "members": [
+      "岩﨑大昇",
+      "井上瑞稀",
+      "中村嶺亜",
+      "猪狩蒼弥",
+      "佐々木大光"
+    ],
+    "cover": "front",
+    "price": 1320,
+    "bonus": null,
+    "source": "https://www.fujisan.co.jp/product/1281704307/b/list/",
+    "publicVisible": true
   }
 ]
