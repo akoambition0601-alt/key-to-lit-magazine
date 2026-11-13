@@ -303,6 +303,35 @@
 .feedback-note{color:var(--muted);font-size:11px;line-height:1.7;margin-top:10px}
 @media(max-width:720px){.feedback-nav-row{justify-content:flex-end;padding:0 4px 7px}.feedback-nav-trigger{font-size:10px}}
 
+
+/* 電子版：結論と詳細を見分けやすくする */
+.digital-list-controls .filter-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0;gap:12px}
+.digital-filter-help{padding:11px 14px;margin-top:12px}
+.digital-issue{padding:18px 19px;box-shadow:0 4px 16px rgba(30,44,60,.035)}
+.digital-issue h3{font-size:17px;line-height:1.45;margin:6px 0 12px;overflow-wrap:anywhere}
+.digital-issue-date{font-size:12px;font-weight:650}
+.digital-verdict{margin:0 0 12px;border-left:4px solid #547e72;font-size:14px;line-height:1.5;padding:10px 13px}
+.digital-verdict.unknown{border-left-color:#a8b0be}
+.digital-verdict.not-available{border-left-color:#b88c91}
+.digital-issue .digital-pages{font-size:13px;line-height:1.65;margin:0 0 10px;color:#293b50}
+.digital-issue .digital-meta{font-size:11px;color:var(--muted)}
+.digital-prior{background:#f7f8fb;border:1px solid #e7eaf0;border-radius:10px;padding:11px 13px;margin:13px 0 10px;gap:5px}
+.digital-prior-label{font-size:11px;color:#35435b}
+.digital-prior span:not(.digital-prior-label){font-size:12px;color:#39485e}
+.digital-prior small{font-size:11px;line-height:1.6}
+.digital-issue .digital-actions{display:flex;flex-wrap:wrap;gap:8px}
+.digital-issue .digital-actions a{display:inline-flex;align-items:center;min-height:34px;font-size:12px;font-weight:700}
+.digital-issue .digital-actions button{min-height:34px}
+.research-collapsed{border:1px solid #e1e5ec;border-radius:14px;background:#fff;margin-top:22px;overflow:hidden}
+.research-collapsed>summary{cursor:pointer;padding:16px 18px;font-size:14px;font-weight:800;line-height:1.5;color:#344159}
+.research-collapsed[open]>summary{border-bottom:1px solid #e5e8ed;background:#f7f8fb}
+.research-collapsed>.hint{padding:12px 18px 0;margin:0}
+.research-collapsed .digital-panel{border:0;border-radius:0;margin:0;padding:18px}
+.digital-history-item{background:#fdfdfd;border-color:#e3e7ed;padding:16px}
+.digital-history-item strong{font-size:14px;color:#293b50;margin-bottom:8px}
+.digital-history-item p{margin:8px 0;font-size:12px;line-height:1.7;color:#455266}
+@media(max-width:760px){.digital-list-controls .filter-grid{grid-template-columns:1fr;gap:12px}.digital-issue{padding:16px}.research-collapsed .digital-panel{padding:14px}.research-collapsed>summary{padding:14px}}
+
 </style>
 </head>
 <body>
@@ -371,10 +400,10 @@
   </div>
   <p class="minor" id="digitalListCount" aria-live="polite"></p>
   <div class="digital-issue-list" id="digitalIssueList" aria-live="polite"></div>
-  <details class="research-collapsed" id="researchDrawer"><summary>詳しい配信履歴・自分用メモを見る（任意）</summary><p class="hint">上の一覧が結論です。こちらは過去号の確認元を見たり、自分で調べた情報を記録したい人向けの詳細欄です。</p>
+  <details class="research-collapsed" id="researchDrawer"><summary>過去号の詳しい記録を見る・メモする（任意）</summary><p class="hint">過去号の確認記録と、端末内に保存する自分用メモです。ここにある過去の配信情報は、現在の号の配信を保証しません。</p>
   <section class="digital-panel" id="digitalResearch" aria-labelledby="digitalResearchTitle">
     <div class="digital-head"><div><h2 id="digitalResearchTitle">過去号の配信履歴と記録</h2><p>過去号の情報や出典を確認できます。自分で確認した内容を記録することもできます。</p></div><span class="pill">調査メモ</span></div>
-    <p class="digital-note">「雑誌が配信された」と「KEY TO LITのページも読める」は別の情報です。過去に配信されても次号の配信は保証されません。未確認は配信なしとは異なります。</p>
+    <p class="digital-note">電子版の配信と、KEY TO LITのページの収録は別々に確認しています。「未確認」は「配信なし」ではありません。</p>
     <div class="digital-grid">
       <div class="digital-field"><label for="digitalTitle">雑誌シリーズ</label><select id="digitalTitle"></select></div>
       <div class="digital-field"><label for="digitalService">電子版サービス・購入方法</label><select id="digitalService"><option value="dmag">dマガジン</option><option value="rakuten">楽天マガジン</option><option value="ku">Kindle Unlimited（読み放題）</option><option value="kindle">Kindle版（単品購入）</option></select></div>
@@ -651,8 +680,8 @@ function renderDigitalList(){
   const pages=current?(current.pages==='yes'?'KEY TO LITのページも確認済み':current.pages==='partial'?'KEY TO LITのページは一部確認':current.pages==='no'?'KEY TO LITのページは収録なし':'KEY TO LITのページは未確認'):'KEY TO LITのページは未確認';
   const source=current&&digitalSafeUrl(current.source)?'<a href="'+escapeHtml(digitalSafeUrl(current.source))+'" target="_blank" rel="noopener noreferrer">配信情報の確認元を見る</a>':'';
   const caution=(current&&current.memo&&current.source&&/配信予定|非収録|収録されない|掲載内容が異なる/.test(current.memo))?'<p class="digital-service-caution">'+escapeHtml(current.memo)+'</p>':'';
-  const prior=past.length?'以前の号：'+past.length+'号で配信を確認':'以前の号：確認できた配信情報はまだありません';
-  groups.push('<article class="digital-issue"><div class="digital-issue-date">'+escapeHtml(dateLabel(m.date))+' 発売</div><h3>'+escapeHtml(magazineFamily(m)+' '+m.issue)+'</h3><div class="digital-verdict '+cls+'">'+escapeHtml(state)+'</div><p class="digital-pages">'+escapeHtml(pages)+'</p>'+(current&&current.releaseDate?'<p class="digital-meta">配信日：'+escapeHtml(current.releaseDate)+'</p>':'')+caution+'<div class="digital-prior"><span class="digital-prior-label">参考情報</span><span>'+escapeHtml(prior)+'</span><small>過去の配信は、今号の配信を保証するものではありません。</small></div><div class="digital-actions">'+source+'<button type="button" class="btn secondary small" data-digital-list-jump="'+escapeHtml(magazineFamily(m))+'">過去号を詳しく見る</button></div></article>');
+  const prior=past.length?'配信確認済み：過去'+past.length+'号':'配信を確認できた過去号はありません';
+  groups.push('<article class="digital-issue"><div class="digital-issue-date">'+escapeHtml(dateLabel(m.date))+' 発売</div><h3>'+escapeHtml(magazineFamily(m)+' '+m.issue)+'</h3><div class="digital-verdict '+cls+'">'+escapeHtml(state)+'</div><p class="digital-pages">'+escapeHtml(pages)+'</p>'+(current&&current.releaseDate?'<p class="digital-meta">配信日：'+escapeHtml(current.releaseDate)+'</p>':'')+caution+'<div class="digital-prior"><span class="digital-prior-label">過去号の参考情報</span><span>'+escapeHtml(prior)+'</span><small>過去の配信は、今号の配信を保証するものではありません。</small></div><div class="digital-actions">'+source+'<button type="button" class="btn secondary small" data-digital-list-jump="'+escapeHtml(magazineFamily(m))+'">この雑誌の配信履歴を見る</button></div></article>');
  }
  $('#digitalListCount').textContent=groups.length+'誌（号数単位）';
  const emptyMessage=mode==='confirmed'?'このサービスで配信を確認できた雑誌は、まだありません。未確認の雑誌は一覧に含めていません。':'過去号の配信情報が登録されている雑誌は、まだありません。';
