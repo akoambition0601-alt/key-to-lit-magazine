@@ -664,24 +664,49 @@ function initDigitalHistory(){loadDigitalHistory();$('#digitalTitle').innerHTML=
 
 // 雑誌ごとに購入先を複数表示。書店検索は在庫・版を保証しません。
 // 各検索リンクは、その雑誌の誌名＋号数＋版をキーワードに組み立てます。
+// 確認済みの商品別リンク。別の号・版に流用しないでください。
+// 今後の商品URLは、この表に「雑誌ID: {書店: 商品URL}」として追加できます。
+const VERIFIED_PRODUCT_LINKS = {
+  'bist-202701-special': {rakuten:'https://books.rakuten.co.jp/rb/18876238/'},
+  'myojo-202701-normal': {
+    rakuten:'https://books.rakuten.co.jp/rb/18867665/',
+    yodobashi:'https://www.yodobashi.com/product/100000009004311457/',
+    kinokuniya:'https://www.kinokuniya.co.jp/f/dsg-04-4912084010171'
+  },
+  'betsucomi-202701': {rakuten:'https://books.rakuten.co.jp/rb/18896528/'},
+  'jmovie-202612-vol137': {rakuten:'https://books.rakuten.co.jp/rb/18884481/'}
+};
+const PRODUCT_SHOPS = {
+  amazon:'Amazon',rakuten:'楽天ブックス',tower:'タワーレコード',
+  hmv:'HMV&BOOKS',yodobashi:'ヨドバシ.com',kinokuniya:'紀伊國屋書店'
+};
 function purchaseShopLinks(m){
-  const key=[m.name,m.issue,m.edition].filter(Boolean).join(' ');
-  const q=encodeURIComponent(key);
+  const keyword=[m.name,m.issue,m.edition].filter(Boolean).join(' ');
+  const q=encodeURIComponent(keyword);
   const safe=url=>{try{const x=new URL(url);return x.protocol==='https:'?x.href:''}catch(_){return ''}};
-  const entries=[
-    ['Amazonで探す','書店内の商品検索','https://www.amazon.co.jp/s?k='+q],
-    ['楽天ブックスで探す','書店内の商品検索','https://books.rakuten.co.jp/search?sitem='+q],
-    ['タワーレコード','書店トップで検索','https://tower.jp/books'],
-    ['HMV&BOOKS','書店トップで検索','https://www.hmv.co.jp/'],
-    ['ヨドバシ.com','書店トップで検索','https://www.yodobashi.com/']
-  ];
-  // 既存の商品別案内URLがある場合は別枠で保持。出版社の記事等は購入ページと誤表示しない。
+  const productLinks=Object.assign({},VERIFIED_PRODUCT_LINKS[m.id]||{},m.purchaseLinks||{});
+  // 従来のshopが直接の商品ページなら、出典記事とは区別して表示。
   const old=safe(m.shop||'');
-  if(old&&old!==safe(m.source||''))entries.unshift(['この雑誌の既存案内','登録済みリンク・販売可否は要確認',old]);
+  if(old&&old!==safe(m.source||'')){
+    const patterns=[
+      ['rakuten',/^https:\/\/books\.rakuten\.co\.jp\/rb\/\d+\/?/],
+      ['yodobashi',/^https:\/\/www\.yodobashi\.com\/product\/\d+\/?/],
+      ['kinokuniya',/^https:\/\/www\.kinokuniya\.co\.jp\/f\/dsg-04-/]
+    ];
+    for(const [shop,regex] of patterns){if(regex.test(old)&&!productLinks[shop])productLinks[shop]=old}
+  }
+  const entries=[];
+  const order=['amazon','rakuten','tower','hmv','yodobashi','kinokuniya'];
+  for(const shop of order){
+    const direct=safe(productLinks[shop]||'');
+    if(direct)entries.push([PRODUCT_SHOPS[shop]+'の商品ページ','この号・版の商品ページへ直接移動',direct]);
+  }
+  // 商品URL未確認の場合は販売サイトのトップへ誘導せず、誌名・号数・版を含む検索結果へ。
+  if(!productLinks.amazon)entries.push(['Amazonで検索','この号・版をキーワード検索（商品ページ未確認）','https://www.amazon.co.jp/s?k='+q]);
+  if(!productLinks.rakuten)entries.push(['楽天ブックスで検索','この号・版をキーワード検索（商品ページ未確認）','https://books.rakuten.co.jp/search?sitem='+q]);
   const links=entries.map(([name,note,url])=>'<a href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer"><span>'+escapeHtml(name)+' ↗</span><small>'+escapeHtml(note)+'</small></a>').join('');
   return '<div class="purchase-links">'+links+'</div>'+
-    '<p class="purchase-terms">検索キーワード：'+escapeHtml(key)+'</p>'+
-    '<p class="hint">検索結果には別の号・通常版・増刊が含まれる場合があります。購入前に号数、表紙、版、価格と販売状況をご確認ください。リンクは在庫・予約受付を保証するものではありません。</p>';
+    '<p class="hint">「商品ページ」は号・版を照合したリンクです。「検索」は商品ページ未確認のため検索結果が開きます。購入前に号数・版・表紙・価格・在庫をご確認ください。</p>';
 }
 
 function purchaseDrawer(m){
