@@ -448,7 +448,7 @@ let selectedMember='all';
 let currentMag=null;
 let toastTimer;
 function notify(message){const t=$('#toast');t.textContent=message;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3000)}
-function load(){try{localStorage.setItem('__lit_test__','1');localStorage.removeItem('__lit_test__');const saved=JSON.parse(localStorage.getItem(storageKey)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved)){for(const m of MAGAZINES){if(saved[m.id]&&typeof saved[m.id]==='object')purchases[m.id]=normalizeEntry(saved[m.id]);}}}catch(err){canPersist=false;$('#storageNotice').innerHTML='<strong>注意：</strong>このブラウザでは保存機能が制限されています。選択内容は画面を閉じると失われる可能性があります。バックアップは利用できます。サイトをHTTPSで公開後に再度お試しください。';}}
+function load(){try{localStorage.setItem('__lit_test__','1');localStorage.removeItem('__lit_test__');const saved=JSON.parse(localStorage.getItem(storageKey)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved)){for(const [id,record] of Object.entries(saved)){if(/^[a-zA-Z0-9-]{3,100}$/.test(id)&&record&&typeof record==='object'&&!Array.isArray(record))purchases[id]=normalizeEntry(record);}}}catch(err){canPersist=false;$('#storageNotice').innerHTML='<strong>注意：</strong>このブラウザでは保存機能が制限されています。選択内容は画面を閉じると失われる可能性があります。バックアップは利用できます。サイトをHTTPSで公開後に再度お試しください。';}}
 function normalizeEntry(raw){const status=Object.hasOwn(STATUS,raw.status)?raw.status:'none';return {status,store:String(raw.store||'').slice(0,100),quantity:Math.min(99,Math.max(1,parseInt(raw.quantity,10)||1)),paid:Boolean(raw.paid),pickupDate:/^\d{4}-\d{2}-\d{2}$/.test(raw.pickupDate||'')?raw.pickupDate:'',receivedDate:/^\d{4}-\d{2}-\d{2}$/.test(raw.receivedDate||'')?raw.receivedDate:'',notes:String(raw.notes||'').slice(0,1000),updatedAt:String(raw.updatedAt||'').slice(0,40)};}
 const entryFor=id=>purchases[id]||{status:'none',store:'',quantity:1,paid:false,pickupDate:'',receivedDate:'',notes:'',updatedAt:''};
 function persist(){
@@ -824,7 +824,14 @@ async function loadSheetDigital(){
     PUBLIC_DIGITAL_HISTORY.splice(0,PUBLIC_DIGITAL_HISTORY.length,...merged.values());
   }catch(e){console.warn('電子版の共通データを読み込めず、既存履歴を使用',e)}
 }
-Promise.all([loadSheetCatalog(),loadSheetDigital()]).then(loadApprovedMagazines).then(init);
+// 非表示の雑誌は画面から外す。ただし既存IDとローカルの購入記録は削除しない。
+// publicVisible フラグは Apps Script が「公開対象チェック」から生成する。
+function applyPublicVisibility(){
+  const visible=MAGAZINES.filter(m=>m.publicVisible!==false);
+  if(!visible.length){console.warn('公開対象が0件になるためフィルタを適用しませんでした');return;}
+  MAGAZINES.splice(0,MAGAZINES.length,...visible);
+}
+Promise.all([loadSheetCatalog(),loadSheetDigital()]).then(loadApprovedMagazines).then(()=>{applyPublicVisibility();init();});
 
 </script>
 </body>
