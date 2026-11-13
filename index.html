@@ -333,7 +333,7 @@
 @media(max-width:760px){.digital-list-controls .filter-grid{grid-template-columns:1fr;gap:12px}.digital-issue{padding:16px}.research-collapsed .digital-panel{padding:14px}.research-collapsed>summary{padding:14px}}
 
 
-/* 購入先：主要3書店を分かりやすく表示 */
+/* 購入先：主要4書店を分かりやすく表示 */
 .purchase-main-shops{grid-template-columns:1fr;gap:9px;margin:8px 0 10px}
 .purchase-main-shops a{position:relative;display:flex;flex-direction:column;gap:1px;padding:13px 38px 13px 15px;min-height:63px;border-color:#dce2eb;background:#fff;border-radius:12px;color:#293b50}
 .purchase-main-shops a:hover,.purchase-main-shops a:focus-visible{border-color:#8c9ab2;background:#f6f8fc}
@@ -767,10 +767,11 @@ function purchaseShopLinks(m){
   const q=encodeURIComponent(keyword);
   const safe=url=>{try{const x=new URL(url);return x.protocol==='https:'?x.href:''}catch(_){return ''}};
   const productLinks=Object.assign({},VERIFIED_PRODUCT_LINKS[m.id]||{},m.purchaseLinks||{});
-  // 主要3書店のみ。その他の購入先URLデータは削除せず、将来の追加に備えて保持する。
+  // 主要4書店のみ。その他の購入先URLデータは削除せず、将来の追加に備えて保持する。
   const shops=[
     ['amazon','Amazon','https://www.amazon.co.jp/s?k='+q],
     ['rakuten','楽天ブックス','https://books.rakuten.co.jp/search?sitem='+q],
+    ['sevennet','セブンネット','https://7net.omni7.jp/search/?keyword='+q+'&searchKeywordFlg=1'],
     ['tower','タワーレコード','https://tower.jp/search/advanced/item/']
   ];
   const links=shops.map(([key,name,searchUrl])=>{
