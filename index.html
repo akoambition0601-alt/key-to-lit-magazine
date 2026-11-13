@@ -332,6 +332,20 @@
 .digital-history-item p{margin:8px 0;font-size:12px;line-height:1.7;color:#455266}
 @media(max-width:760px){.digital-list-controls .filter-grid{grid-template-columns:1fr;gap:12px}.digital-issue{padding:16px}.research-collapsed .digital-panel{padding:14px}.research-collapsed>summary{padding:14px}}
 
+
+/* 購入先：主要3書店を分かりやすく表示 */
+.purchase-main-shops{grid-template-columns:1fr;gap:9px;margin:8px 0 10px}
+.purchase-main-shops a{position:relative;display:flex;flex-direction:column;gap:1px;padding:13px 38px 13px 15px;min-height:63px;border-color:#dce2eb;background:#fff;border-radius:12px;color:#293b50}
+.purchase-main-shops a:hover,.purchase-main-shops a:focus-visible{border-color:#8c9ab2;background:#f6f8fc}
+.purchase-main-shops .purchase-shop-name{font-size:13px;font-weight:800;line-height:1.5}
+.purchase-main-shops a small{font-size:11px;font-weight:500;color:#6b7788}
+.purchase-shop-arrow{position:absolute;right:15px;top:50%;transform:translateY(-50%);font-size:16px;font-weight:500;color:#68788e}
+.shop-drawer-body .purchase-guide{font-size:12px;line-height:1.7;margin:2px 0 10px;color:#516173}
+.purchase-help{margin-top:10px;border-top:1px solid #e7eaf0;padding-top:9px}
+.purchase-help summary{font-size:11px;font-weight:700;color:#52637a;cursor:pointer}
+.purchase-help p{font-size:11px;line-height:1.7;color:#657284;margin:7px 0}
+.purchase-help .purchase-keyword{background:#f5f7fa;padding:8px 10px;border-radius:7px;color:#35445b;overflow-wrap:anywhere}
+
 </style>
 </head>
 <body>
@@ -753,41 +767,22 @@ function purchaseShopLinks(m){
   const q=encodeURIComponent(keyword);
   const safe=url=>{try{const x=new URL(url);return x.protocol==='https:'?x.href:''}catch(_){return ''}};
   const productLinks=Object.assign({},VERIFIED_PRODUCT_LINKS[m.id]||{},m.purchaseLinks||{});
-  // 従来登録された購入URLを、出典URLとは区別して引き継ぐ。
-  const old=safe(m.shop||'');
-  if(old&&old!==safe(m.source||'')){
-    const patterns=[
-      ['rakuten',/^https:\/\/books\.rakuten\.co\.jp\/rb\/\d+\/?/],
-      ['yodobashi',/^https:\/\/www\.yodobashi\.com\/product\/\d+\/?/],
-      ['kinokuniya',/^https:\/\/www\.kinokuniya\.co\.jp\/f\/dsg-04-/]
-    ];
-    for(const [shop,regex] of patterns){if(regex.test(old)&&!productLinks[shop])productLinks[shop]=old}
-  }
-  const searchPages={
-    amazon:'https://www.amazon.co.jp/s?k='+q,
-    rakuten:'https://books.rakuten.co.jp/search?sitem='+q,
-    tower:'https://tower.jp/search/advanced/item/',
-    hmv:'https://www.hmv.co.jp/search/keyword_'+q+'/',
-    yodobashi:'https://www.yodobashi.com/?word='+q
-  };
-  const shops=['amazon','rakuten','tower','hmv','yodobashi'];
-  const entries=shops.map(shop=>{
-    const direct=safe(productLinks[shop]||'');
-    return direct
-      ? [PRODUCT_SHOPS[shop]+'｜商品ページへ','この号・版の個別商品ページ（確認済み）',direct]
-      : shop==='tower'
-        ? ['タワーレコード｜書店で検索','検索フォームで下記キーワードを入力',searchPages[shop]]
-        : [PRODUCT_SHOPS[shop]+'｜書店で検索','雑誌名・号数・版を検索（商品ページ未確認）',searchPages[shop]];
-  });
-  // 紀伊國屋書店など、別途確認された商品ページも失わない。
-  if(safe(productLinks.kinokuniya||''))entries.push(['紀伊國屋書店｜商品ページへ','この号・版の個別商品ページ（確認済み）',safe(productLinks.kinokuniya)]);
-  const links=entries.map(([name,note,url])=>'<a href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer"><span>'+escapeHtml(name)+' ↗</span><small>'+escapeHtml(note)+'</small></a>').join('');
-  return '<p class="purchase-guide"><strong>購入先の見方</strong>　商品ページを確認できた書店は「商品ページへ」、まだ確認できていない書店は「書店で検索」と表示しています。タワーレコードは検索フォームが開くため、下記の検索キーワードを入力してください。検索結果は該当号・版を保証するものではありません。</p>'+
-    '<div class="purchase-links">'+links+'</div>'+
-    '<p class="hint">検索用キーワード：'+escapeHtml(keyword)+'</p>'+
-    '<p class="hint">※ 予約受付や在庫があることを保証するものではありません。購入前に号数・版（通常版・増刊など）・表紙・価格・在庫をご確認ください。</p>';
+  // 主要3書店のみ。その他の購入先URLデータは削除せず、将来の追加に備えて保持する。
+  const shops=[
+    ['amazon','Amazon','https://www.amazon.co.jp/s?k='+q],
+    ['rakuten','楽天ブックス','https://books.rakuten.co.jp/search?sitem='+q],
+    ['tower','タワーレコード','https://tower.jp/search/advanced/item/']
+  ];
+  const links=shops.map(([key,name,searchUrl])=>{
+    const direct=safe(productLinks[key]||'');
+    const label=name+(direct?'｜商品ページを見る':'で探す');
+    const sub=direct?'個別商品ページへのリンク':'検索ページへ移動';
+    return '<a href="'+escapeHtml(direct||searchUrl)+'" target="_blank" rel="noopener noreferrer" aria-label="'+escapeHtml(label)+'"><span class="purchase-shop-name">'+escapeHtml(label)+'</span><small>'+escapeHtml(sub)+'</small><span class="purchase-shop-arrow" aria-hidden="true">↗</span></a>';
+  }).join('');
+  return '<p class="purchase-guide">購入先を選んでください。商品ページが未登録の場合は検索ページに移動します。</p>'+
+    '<div class="purchase-links purchase-main-shops">'+links+'</div>'+
+    '<details class="purchase-help"><summary>検索する際の注意点</summary><p>タワーレコードで検索フォームが開いた場合は、次のキーワードを入力してください。</p><p class="purchase-keyword">'+escapeHtml(keyword)+'</p><p>在庫・予約受付状況は各書店でご確認ください。購入前に号数・版・表紙をご確認ください。</p></details>';
 }
-
 function purchaseDrawer(m){
   return '<details class="info-drawer shop-drawer"><summary><span>購入先を探す</span><span class="drawer-action">書店を選ぶ <span class="drawer-arrow" aria-hidden="true">⌄</span></span></summary><div class="shop-drawer-body">'+purchaseShopLinks(m)+'</div></details>';
 }
