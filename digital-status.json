@@ -130,5 +130,29 @@
     "checkedAt": "2026-11-13",
     "source": "https://magazine.rakuten.co.jp/issue/E7BBE024DFD6EF3DC66098CF0DBAC844/",
     "memo": "楽天マガジン公式個別号ページで2026/10/16配信を確認。KEY TO LITの掲載ページの有無は確認できない。"
+  },
+  {
+    "title": "BAILA",
+    "service": "rakuten",
+    "issue": "2026年12月号",
+    "status": "yes",
+    "pages": "unknown",
+    "paperDate": "",
+    "releaseDate": "2026-10-28",
+    "checkedAt": "2026-11-13",
+    "source": "https://magazine.rakuten.co.jp/issue/20215294719A538C18273896516765C7/",
+    "memo": "楽天マガジン公式個別号ページで2026/10/28配信を確認。掲載ページは未確認。"
+  },
+  {
+    "title": "MEN’S NON-NO",
+    "service": "rakuten",
+    "issue": "2026年12月号",
+    "status": "yes",
+    "pages": "unknown",
+    "paperDate": "",
+    "releaseDate": "2026-11-09",
+    "checkedAt": "2026-11-13",
+    "source": "https://magazine.rakuten.co.jp/issue/96F7CB0C7499EFE124446EEB4B07A756/",
+    "memo": "楽天マガジン公式個別号ページで2026/11/09配信を確認。掲載ページは未確認。"
   }
 ]
