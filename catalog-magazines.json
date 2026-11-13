@@ -1,5 +1,17 @@
 [
   {
+    "types": [
+      "award"
+    ],
+    "interviewStatus": "unknown",
+    "featureStatus": "unconfirmed",
+    "bonusText": "中村嶺亜関連のピンナップ・カードは未確認。通常版には美容コスメ付録あり。",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "電子版に中村嶺亜の掲載ページが収録されるか未確認",
+    "summary": "【掲載情報確認中】中村嶺亜の「フェイス・オブ・ザ・イヤー」関連企画との情報あり。公式では本人の掲載を未確認。",
+    "details": "発売日と3形態、版ごとの表紙・美容付録の違いはMAQUIA公式で確認済み。中村嶺亜の受賞・掲載・記事種別・ページ数は未確認。",
+    "shop": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/",
     "id": "maquia-202702-normal",
     "name": "MAQUIA",
     "issue": "2027年2月号",
@@ -10,22 +22,22 @@
       "中村嶺亜"
     ],
     "cover": "inside",
+    "bonus": null,
+    "source": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/"
+  },
+  {
     "types": [
       "award"
     ],
     "interviewStatus": "unknown",
     "featureStatus": "unconfirmed",
-    "bonus": null,
-    "bonusText": "中村嶺亜関連のピンナップ・カードは未確認。通常版には美容コスメ付録あり。",
+    "bonusText": "中村嶺亜関連付録は未確認。集英社スペシャルには通常版と異なる美容コスメ付録あり。",
     "pages": null,
     "digital": "unknown",
-    "digitalNote": "電子版に中村嶺亜の掲載ページが収録されるか未確認",
-    "summary": "【掲載情報確認中】中村嶺亜の「フェイス・オブ・ザ・イヤー」関連企画との情報あり。公式では本人の掲載を未確認。",
-    "details": "発売日と3形態、版ごとの表紙・美容付録の違いはMAQUIA公式で確認済み。中村嶺亜の受賞・掲載・記事種別・ページ数は未確認。",
-    "source": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/",
-    "shop": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/"
-  },
-  {
+    "digitalNote": "電子版の該当ページは未確認",
+    "summary": "【掲載情報確認中】中村嶺亜の「フェイス・オブ・ザ・イヤー」関連企画との情報あり。本人の掲載は公式未確認。",
+    "details": "出版社によれば表紙・表紙メイクページ・付録以外の誌面は3形態共通。中村嶺亜の掲載は未確認。",
+    "shop": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/",
     "id": "maquia-202702-special",
     "name": "MAQUIA",
     "issue": "2027年2月号",
@@ -36,22 +48,22 @@
       "中村嶺亜"
     ],
     "cover": "inside",
+    "bonus": null,
+    "source": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/"
+  },
+  {
     "types": [
       "award"
     ],
     "interviewStatus": "unknown",
     "featureStatus": "unconfirmed",
-    "bonus": null,
-    "bonusText": "中村嶺亜関連付録は未確認。集英社スペシャルには通常版と異なる美容コスメ付録あり。",
+    "bonusText": "中村嶺亜関連付録は未確認。集英社スペシャル増刊には他2形態と異なる美容コスメ付録あり。",
     "pages": null,
     "digital": "unknown",
     "digitalNote": "電子版の該当ページは未確認",
     "summary": "【掲載情報確認中】中村嶺亜の「フェイス・オブ・ザ・イヤー」関連企画との情報あり。本人の掲載は公式未確認。",
     "details": "出版社によれば表紙・表紙メイクページ・付録以外の誌面は3形態共通。中村嶺亜の掲載は未確認。",
-    "source": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/",
-    "shop": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/"
-  },
-  {
+    "shop": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/",
     "id": "maquia-202702-extra",
     "name": "MAQUIA",
     "issue": "2027年2月号",
@@ -62,22 +74,23 @@
       "中村嶺亜"
     ],
     "cover": "inside",
-    "types": [
-      "award"
-    ],
-    "interviewStatus": "unknown",
-    "featureStatus": "unconfirmed",
     "bonus": null,
-    "bonusText": "中村嶺亜関連付録は未確認。集英社スペシャル増刊には他2形態と異なる美容コスメ付録あり。",
-    "pages": null,
-    "digital": "unknown",
-    "digitalNote": "電子版の該当ページは未確認",
-    "summary": "【掲載情報確認中】中村嶺亜の「フェイス・オブ・ザ・イヤー」関連企画との情報あり。本人の掲載は公式未確認。",
-    "details": "出版社によれば表紙・表紙メイクページ・付録以外の誌面は3形態共通。中村嶺亜の掲載は未確認。",
-    "source": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/",
-    "shop": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/"
+    "source": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/"
   },
   {
+    "types": [
+      "interview",
+      "photo"
+    ],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LIT関連のピンナップ・厚紙カードは未確認",
+    "pages": 8,
+    "digital": "unknown",
+    "digitalNote": "電子版でのKEY TO LIT掲載ページは未確認",
+    "summary": "美ST初表紙。「美と覚悟の現在地」（仮）をテーマに8ページのカバーストーリー。",
+    "details": "KEY TO LITのカバーストーリーは通常版・増刊にも掲載されると公式に案内されています。",
+    "shop": "https://be-story.jp/people/296608/",
     "id": "bist-202701-special",
     "name": "美ST",
     "issue": "2027年1月号",
@@ -92,21 +105,23 @@
       "佐々木大光"
     ],
     "cover": "front",
+    "bonus": null,
+    "source": "https://be-story.jp/people/296608/"
+  },
+  {
     "types": [
       "interview",
       "photo"
     ],
-    "bonus": null,
-    "bonusText": "KEY TO LIT関連のピンナップ・厚紙カードは未確認",
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LIT関連の付録は公式情報で確認できず（美容付録あり）",
     "pages": 8,
     "digital": "unknown",
     "digitalNote": "電子版でのKEY TO LIT掲載ページは未確認",
-    "summary": "美ST初表紙。「美と覚悟の現在地」（仮）をテーマに8ページのカバーストーリー。",
-    "details": "KEY TO LITのカバーストーリーは通常版・増刊にも掲載されると公式に案内されています。",
-    "source": "https://be-story.jp/people/296608/",
-    "shop": "https://be-story.jp/people/296608/"
-  },
-  {
+    "summary": "KEY TO LIT「美と覚悟の現在地」カバーストーリー掲載。表紙は榮倉奈々。",
+    "details": "公式発表によるとKEY TO LITのカバーストーリーは特別版・通常版・増刊に掲載。通常版には美容関連の付録が付きます。",
+    "shop": "https://be-story.jp/people/296608/",
     "id": "bist-202701-normal",
     "name": "美ST",
     "issue": "2027年1月号",
@@ -121,21 +136,23 @@
       "佐々木大光"
     ],
     "cover": "inside",
+    "bonus": null,
+    "source": "https://be-story.jp/people/296608/"
+  },
+  {
     "types": [
       "interview",
       "photo"
     ],
-    "bonus": false,
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
     "bonusText": "KEY TO LIT関連の付録は公式情報で確認できず（美容付録あり）",
     "pages": 8,
     "digital": "unknown",
     "digitalNote": "電子版でのKEY TO LIT掲載ページは未確認",
-    "summary": "KEY TO LIT「美と覚悟の現在地」カバーストーリー掲載。表紙は榮倉奈々。",
-    "details": "公式発表によるとKEY TO LITのカバーストーリーは特別版・通常版・増刊に掲載。通常版には美容関連の付録が付きます。",
-    "source": "https://be-story.jp/people/296608/",
-    "shop": "https://be-story.jp/people/296608/"
-  },
-  {
+    "summary": "KEY TO LITのカバーストーリー掲載。表紙は榮倉奈々。",
+    "details": "通常版・特別版とKEY TO LITのカバーストーリーは共通。増刊には別内容の美容付録があります。",
+    "shop": "https://be-story.jp/people/296608/",
     "id": "bist-202701-extra",
     "name": "美ST",
     "issue": "2027年1月号",
@@ -150,21 +167,23 @@
       "佐々木大光"
     ],
     "cover": "inside",
+    "bonus": null,
+    "source": "https://be-story.jp/people/296608/"
+  },
+  {
     "types": [
       "interview",
       "photo"
     ],
-    "bonus": false,
-    "bonusText": "KEY TO LIT関連の付録は公式情報で確認できず（美容付録あり）",
-    "pages": 8,
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "全ペアメッセージ付き「#まずは絆ピンナップ」",
+    "pages": 10,
     "digital": "unknown",
-    "digitalNote": "電子版でのKEY TO LIT掲載ページは未確認",
-    "summary": "KEY TO LITのカバーストーリー掲載。表紙は榮倉奈々。",
-    "details": "通常版・特別版とKEY TO LITのカバーストーリーは共通。増刊には別内容の美容付録があります。",
-    "source": "https://be-story.jp/people/296608/",
-    "shop": "https://be-story.jp/people/296608/"
-  },
-  {
+    "digitalNote": "電子版にKEY TO LITのページが収録されるか未確認",
+    "summary": "表紙＋特集「奇天烈（カクメイ）前夜」。10ページ・9,500字超のインタビューとソロビジュアル。",
+    "details": "デビュー決定後の思いやデビュー曲について語る特集。10ペアのメッセージ付き厚紙ピンナップ。",
+    "shop": "https://www.vivi.tv/post494800/",
     "id": "vivi-202701-special",
     "name": "ViVi",
     "issue": "2027年1月号",
@@ -179,21 +198,23 @@
       "佐々木大光"
     ],
     "cover": "front",
+    "bonus": true,
+    "source": "https://www.vivi.tv/post497002/"
+  },
+  {
     "types": [
       "interview",
       "photo"
     ],
-    "bonus": true,
-    "bonusText": "全ペアメッセージ付き「#まずは絆ピンナップ」",
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "全ペアメッセージ付き厚紙ピンナップ",
     "pages": 10,
     "digital": "unknown",
     "digitalNote": "電子版にKEY TO LITのページが収録されるか未確認",
-    "summary": "表紙＋特集「奇天烈（カクメイ）前夜」。10ページ・9,500字超のインタビューとソロビジュアル。",
-    "details": "デビュー決定後の思いやデビュー曲について語る特集。10ペアのメッセージ付き厚紙ピンナップ。",
-    "source": "https://www.vivi.tv/post497002/",
-    "shop": "https://www.vivi.tv/post494800/"
-  },
-  {
+    "summary": "KEY TO LITのデビュー特集と厚紙ピンナップを掲載。表紙はせいら。",
+    "details": "公式のオンライン書店案内で通常版にもKEY TO LITの厚紙ピンナップが付くことを確認。",
+    "shop": "https://www.vivi.tv/post494800/",
     "id": "vivi-202701-normal",
     "name": "ViVi",
     "issue": "2027年1月号",
@@ -208,21 +229,23 @@
       "佐々木大光"
     ],
     "cover": "inside",
+    "bonus": true,
+    "source": "https://www.vivi.tv/post494800/"
+  },
+  {
     "types": [
       "interview",
       "photo"
     ],
-    "bonus": true,
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
     "bonusText": "全ペアメッセージ付き厚紙ピンナップ",
     "pages": 10,
     "digital": "unknown",
     "digitalNote": "電子版にKEY TO LITのページが収録されるか未確認",
-    "summary": "KEY TO LITのデビュー特集と厚紙ピンナップを掲載。表紙はせいら。",
-    "details": "公式のオンライン書店案内で通常版にもKEY TO LITの厚紙ピンナップが付くことを確認。",
-    "source": "https://www.vivi.tv/post494800/",
-    "shop": "https://www.vivi.tv/post494800/"
-  },
-  {
+    "summary": "KEY TO LITのデビュー特集と厚紙ピンナップを掲載。表紙は芳根京子×本田響矢。",
+    "details": "KEY TO LITの厚紙ピンナップは3形態共通と公式が案内。増刊は価格・表紙が異なります。",
+    "shop": "https://www.vivi.tv/post494800/",
     "id": "vivi-202701-extra",
     "name": "ViVi",
     "issue": "2027年1月号",
@@ -237,21 +260,22 @@
       "佐々木大光"
     ],
     "cover": "inside",
-    "types": [
-      "interview",
-      "photo"
-    ],
     "bonus": true,
-    "bonusText": "全ペアメッセージ付き厚紙ピンナップ",
-    "pages": 10,
-    "digital": "unknown",
-    "digitalNote": "電子版にKEY TO LITのページが収録されるか未確認",
-    "summary": "KEY TO LITのデビュー特集と厚紙ピンナップを掲載。表紙は芳根京子×本田響矢。",
-    "details": "KEY TO LITの厚紙ピンナップは3形態共通と公式が案内。増刊は価格・表紙が異なります。",
-    "source": "https://www.vivi.tv/post494800/",
-    "shop": "https://www.vivi.tv/post494800/"
+    "source": "https://www.vivi.tv/post494800/"
   },
   {
+    "types": [
+      "photo"
+    ],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LITスペシャルピンナップ",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "電子版の収録状況は未確認",
+    "summary": "KEY TO LITのスペシャルピンナップ。通常版の表紙は浜辺美波。",
+    "details": "付録・表紙情報は販売情報に基づきます。誌面の具体的なページ数は未確認。",
+    "shop": "https://www.yodobashi.com/product/100000009004311463/",
     "id": "ray-202701-normal",
     "name": "Ray",
     "issue": "2027年1月号",
@@ -266,20 +290,22 @@
       "佐々木大光"
     ],
     "cover": "inside",
+    "bonus": true,
+    "source": "https://furoku.net/list/?cat=22"
+  },
+  {
     "types": [
       "photo"
     ],
-    "bonus": true,
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
     "bonusText": "KEY TO LITスペシャルピンナップ",
     "pages": null,
     "digital": "unknown",
     "digitalNote": "電子版の収録状況は未確認",
-    "summary": "KEY TO LITのスペシャルピンナップ。通常版の表紙は浜辺美波。",
-    "details": "付録・表紙情報は販売情報に基づきます。誌面の具体的なページ数は未確認。",
-    "source": "https://furoku.net/list/?cat=22",
-    "shop": "https://www.yodobashi.com/product/100000009004311463/"
-  },
-  {
+    "summary": "KEY TO LIT表紙・スペシャルピンナップ。誌面の詳細は未確認。",
+    "details": "通常版とは表紙が異なる版。購入時は「増刊 特別版」の表記をご確認ください。",
+    "shop": "https://furoku.net/list/?cat=22",
     "id": "ray-202701-special",
     "name": "Ray",
     "issue": "2027年1月号",
@@ -294,20 +320,23 @@
       "佐々木大光"
     ],
     "cover": "front",
-    "types": [
-      "photo"
-    ],
     "bonus": true,
-    "bonusText": "KEY TO LITスペシャルピンナップ",
-    "pages": null,
-    "digital": "unknown",
-    "digitalNote": "電子版の収録状況は未確認",
-    "summary": "KEY TO LIT表紙・スペシャルピンナップ。誌面の詳細は未確認。",
-    "details": "通常版とは表紙が異なる版。購入時は「増刊 特別版」の表記をご確認ください。",
-    "source": "https://furoku.net/list/?cat=22",
-    "shop": "https://furoku.net/list/?cat=22"
+    "source": "https://furoku.net/list/?cat=22"
   },
   {
+    "types": [
+      "interview",
+      "photo"
+    ],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LIT厚紙カード",
+    "pages": 12,
+    "digital": "unknown",
+    "digitalNote": "電子版に掲載ページが含まれるか未確認",
+    "summary": "表紙・裏表紙・巻頭12ページ・厚紙カードにKEY TO LITが登場。",
+    "details": "通常版と「ちっこいMyojo」では表紙・厚紙カードの写真とデザインが異なります。",
+    "shop": "https://www.kinokuniya.co.jp/f/dsg-04-4912084010171",
     "id": "myojo-202701-normal",
     "name": "Myojo",
     "issue": "2027年1月号",
@@ -322,21 +351,23 @@
       "佐々木大光"
     ],
     "cover": "front",
+    "bonus": true,
+    "source": "https://myojo.shueisha.co.jp/next/"
+  },
+  {
     "types": [
       "interview",
       "photo"
     ],
-    "bonus": true,
-    "bonusText": "KEY TO LIT厚紙カード",
-    "pages": 12,
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LIT厚紙カード（通常版とは別柄）",
+    "pages": null,
     "digital": "unknown",
-    "digitalNote": "電子版に掲載ページが含まれるか未確認",
-    "summary": "表紙・裏表紙・巻頭12ページ・厚紙カードにKEY TO LITが登場。",
-    "details": "通常版と「ちっこいMyojo」では表紙・厚紙カードの写真とデザインが異なります。",
-    "source": "https://myojo.shueisha.co.jp/next/",
-    "shop": "https://www.kinokuniya.co.jp/f/dsg-04-4912084010171"
-  },
-  {
+    "digitalNote": "電子版の収録状況は未確認",
+    "summary": "KEY TO LIT表紙・裏表紙・巻頭特集・厚紙カード。通常版とは絵柄が異なります。",
+    "details": "「ちっこいMyojo」は小型版。通常版と写真・デザインの違いに注意。",
+    "shop": "https://furoku.net/myojo-2027-01-small/",
     "id": "myojo-202701-small",
     "name": "ちっこいMyojo",
     "issue": "2027年1月号",
@@ -351,21 +382,23 @@
       "佐々木大光"
     ],
     "cover": "front",
-    "types": [
-      "interview",
-      "photo"
-    ],
     "bonus": true,
-    "bonusText": "KEY TO LIT厚紙カード（通常版と絵柄が異なる）",
-    "pages": null,
-    "digital": "unknown",
-    "digitalNote": "電子版の収録状況は未確認",
-    "summary": "KEY TO LIT表紙・裏表紙・巻頭特集・厚紙カード。通常版とは絵柄が異なります。",
-    "details": "「ちっこいMyojo」は小型版。通常版と写真・デザインの違いに注意。",
-    "source": "https://myojo.shueisha.co.jp/next/",
-    "shop": "https://furoku.net/myojo-2027-01-small/"
+    "source": "https://myojo.shueisha.co.jp/next/"
   },
   {
+    "types": [
+      "photo",
+      "interview"
+    ],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LIT関連の付録は未確認",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "電子版の対象ページは未確認",
+    "summary": "KEY TO LIT表紙＆巻頭グラビア。12月9日のCDデビュー記念。",
+    "details": "関東版など地域版があります。地域ごとに表紙・誌面構成が異なる可能性があります。",
+    "shop": "https://zasshi.tv/products/62851/",
     "id": "tvguide-202701",
     "name": "月刊TVガイド",
     "issue": "2027年1月号",
@@ -380,21 +413,23 @@
       "佐々木大光"
     ],
     "cover": "front",
-    "types": [
-      "photo",
-      "interview"
-    ],
     "bonus": null,
-    "bonusText": "KEY TO LIT関連の付録は未確認",
-    "pages": null,
-    "digital": "unknown",
-    "digitalNote": "電子版の対象ページは未確認",
-    "summary": "KEY TO LIT表紙＆巻頭グラビア。12月9日のCDデビュー記念。",
-    "details": "関東版など地域版があります。地域ごとに表紙・誌面構成が異なる可能性があります。",
-    "source": "https://zasshi.tv/products/62851/",
-    "shop": "https://zasshi.tv/products/62851/"
+    "source": "https://zasshi.tv/products/62851/"
   },
   {
+    "types": [
+      "interview",
+      "photo"
+    ],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "A3サイズ特製両面ピンナップ",
+    "pages": 8,
+    "digital": "unknown",
+    "digitalNote": "電子版の対象ページは未確認",
+    "summary": "KEY TO LITがフロントカバー＋8ページ。A3サイズ特製両面ピンナップ付き。",
+    "details": "裏表紙には別の出演者が掲載される特別号です。",
+    "shop": "https://www.yodobashi.com/product/100000009004306804/",
     "id": "barfout-core-202611",
     "name": "BARFOUT!",
     "issue": "SPECIAL EDITION LATE AUTUMN 2026 / CORE",
@@ -409,21 +444,23 @@
       "佐々木大光"
     ],
     "cover": "front",
+    "bonus": true,
+    "source": "https://barfout.jp/culture/5722/"
+  },
+  {
     "types": [
       "interview",
       "photo"
     ],
-    "bonus": true,
-    "bonusText": "A3サイズ特製両面ピンナップ",
-    "pages": 8,
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LITスペシャル厚紙カード（販売情報による）",
+    "pages": null,
     "digital": "unknown",
     "digitalNote": "電子版の対象ページは未確認",
-    "summary": "KEY TO LITがフロントカバー＋8ページ。A3サイズ特製両面ピンナップ付き。",
-    "details": "裏表紙には別の出演者が掲載される特別号です。",
-    "source": "https://barfout.jp/culture/5722/",
-    "shop": "https://www.yodobashi.com/product/100000009004306804/"
-  },
-  {
+    "summary": "KEY TO LIT表紙。「僕らはまだ、旅の途中。」と題した特集が案内されています。",
+    "details": "内容・付録の細部は出版社の確定情報が出た際に再確認してください。",
+    "shop": "https://www.yodobashi.com/product/100000009004313824/",
     "id": "baila-202701-special",
     "name": "BAILA",
     "issue": "2027年1月号",
@@ -438,21 +475,23 @@
       "佐々木大光"
     ],
     "cover": "front",
+    "bonus": true,
+    "source": "https://furoku.net/baila-2027-01-sp/"
+  },
+  {
     "types": [
       "interview",
       "photo"
     ],
-    "bonus": true,
-    "bonusText": "KEY TO LITスペシャル厚紙カード（販売情報による）",
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LIT関連付録は未確認",
     "pages": null,
     "digital": "unknown",
-    "digitalNote": "電子版の対象ページは未確認",
-    "summary": "KEY TO LIT表紙。「僕らはまだ、旅の途中。」と題した特集が案内されています。",
-    "details": "内容・付録の細部は出版社の確定情報が出た際に再確認してください。",
-    "source": "https://furoku.net/baila-2027-01-sp/",
-    "shop": "https://www.yodobashi.com/product/100000009004313824/"
-  },
-  {
+    "digitalNote": "電子版の該当ページは未確認",
+    "summary": "KEY TO LIT本誌初表紙。デビューを控えたインタビューが紹介されています。",
+    "details": "増刊は別の表紙の商品が案内されているため、表紙を目当てに買う場合は通常版を確認してください。",
+    "shop": "https://www.fujisan.co.jp/product/1281679710/b/2808244/",
     "id": "nikkei-202701",
     "name": "日経エンタテインメント！",
     "issue": "2027年1月号",
@@ -467,21 +506,23 @@
       "佐々木大光"
     ],
     "cover": "front",
+    "bonus": null,
+    "source": "https://www.fujisan.co.jp/product/1281679710/b/2808244/"
+  },
+  {
     "types": [
       "interview",
       "photo"
     ],
-    "bonus": null,
-    "bonusText": "KEY TO LIT関連付録は未確認",
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "増刊の付録は「超かぐや姫！」本誌特製ステッカー（KEY TO LIT関連ではありません）",
     "pages": null,
     "digital": "unknown",
-    "digitalNote": "電子版の該当ページは未確認",
-    "summary": "KEY TO LIT本誌初表紙。デビューを控えたインタビューが紹介されています。",
-    "details": "増刊は別の表紙の商品が案内されているため、表紙を目当てに買う場合は通常版を確認してください。",
-    "source": "https://www.fujisan.co.jp/product/1281679710/b/2808244/",
-    "shop": "https://www.fujisan.co.jp/product/1281679710/b/2808244/"
-  },
-  {
+    "digitalNote": "電子版でのKEY TO LIT掲載ページは未確認",
+    "summary": "通常版と誌面内容は共通。KEY TO LITは表紙ではなく誌面に掲載。",
+    "details": "出版社の商品説明によると増刊は表紙・付録のみ異なり、それ以外の誌面内容は通常版と同一です。",
+    "shop": "https://www.yodobashi.com/product/100000009004307768/",
     "id": "nikkei-202701-extra",
     "name": "日経エンタテインメント！",
     "issue": "2027年1月号",
@@ -496,21 +537,22 @@
       "佐々木大光"
     ],
     "cover": "inside",
-    "types": [
-      "interview",
-      "photo"
-    ],
-    "bonus": false,
-    "bonusText": "増刊の付録は「超かぐや姫！」本誌特製ステッカー（KEY TO LIT関連ではありません）",
-    "pages": null,
-    "digital": "unknown",
-    "digitalNote": "電子版でのKEY TO LIT掲載ページは未確認",
-    "summary": "通常版と誌面内容は共通。KEY TO LITは表紙ではなく誌面に掲載。",
-    "details": "出版社の商品説明によると増刊は表紙・付録のみ異なり、それ以外の誌面内容は通常版と同一です。",
-    "source": "https://www.yodobashi.com/product/100000009004307768/",
-    "shop": "https://www.yodobashi.com/product/100000009004307768/"
+    "bonus": null,
+    "source": "https://www.yodobashi.com/product/100000009004307768/"
   },
   {
+    "types": [
+      "photo"
+    ],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LIT関連のピンナップ・カードは未確認（誌面とは別に作品カレンダー付録あり）",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "電子版にKEY TO LITのページが収録されるか未確認",
+    "summary": "KEY TO LIT初登場・初表紙。ファッションシューティング企画を掲載。",
+    "details": "通常の付録は『僕のヒーローアカデミア』2027年卓上カレンダー（KEY TO LIT関連ではありません）。",
+    "shop": "https://books.rakuten.co.jp/rb/18885549/",
     "id": "mensnonno-20270102",
     "name": "MEN’S NON-NO",
     "issue": "2027年1・2月合併号",
@@ -525,20 +567,20 @@
       "佐々木大光"
     ],
     "cover": "front",
-    "types": [
-      "photo"
-    ],
     "bonus": null,
-    "bonusText": "KEY TO LIT関連のピンナップ・カードは未確認（誌面とは別に作品カレンダー付録あり）",
-    "pages": null,
-    "digital": "unknown",
-    "digitalNote": "電子版にKEY TO LITのページが収録されるか未確認",
-    "summary": "KEY TO LIT初登場・初表紙。ファッションシューティング企画を掲載。",
-    "details": "通常の付録は『僕のヒーローアカデミア』2027年卓上カレンダー（KEY TO LIT関連ではありません）。",
-    "source": "https://www.mensnonno.jp/information/magazine/812551/",
-    "shop": "https://books.rakuten.co.jp/rb/18885549/"
+    "source": "https://www.mensnonno.jp/information/magazine/812551/"
   },
   {
+    "types": [],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "付録：未確認",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "電子版の配信および対象ページは未確認",
+    "summary": "表紙・カラー巻頭特集",
+    "details": "運営者が出典を確認し、承認した追加情報です。",
+    "shop": "https://hoshinoshoten.raku-uru.jp/item-detail/1987068",
     "id": "approved-f4359ab28ef1da517bd91f90",
     "name": "Eye-Ai＋",
     "issue": "Vol.21",
@@ -553,17 +595,7 @@
       "佐々木大光"
     ],
     "cover": "front",
-    "types": [],
-    "interviewStatus": "unknown",
-    "featureStatus": "confirmed",
     "bonus": null,
-    "bonusText": "付録：未確認",
-    "pages": null,
-    "digital": "unknown",
-    "digitalNote": "電子版の配信および対象ページは未確認",
-    "summary": "表紙・カラー巻頭特集",
-    "details": "運営者が出典を確認し、承認した追加情報です。",
-    "source": "https://hoshinoshoten.raku-uru.jp/item-detail/1987068",
-    "shop": "https://hoshinoshoten.raku-uru.jp/item-detail/1987068"
+    "source": "https://hoshinoshoten.raku-uru.jp/item-detail/1987068"
   }
 ]
