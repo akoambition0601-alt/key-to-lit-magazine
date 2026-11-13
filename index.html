@@ -700,7 +700,7 @@ function purchaseShopLinks(m){
   const searchPages={
     amazon:'https://www.amazon.co.jp/s?k='+q,
     rakuten:'https://books.rakuten.co.jp/search?sitem='+q,
-    tower:'https://tower.jp/search/item/?keyword='+q,
+    tower:'https://tower.jp/search/advanced/item/',
     hmv:'https://www.hmv.co.jp/search/keyword_'+q+'/',
     yodobashi:'https://www.yodobashi.com/?word='+q
   };
@@ -708,14 +708,17 @@ function purchaseShopLinks(m){
   const entries=shops.map(shop=>{
     const direct=safe(productLinks[shop]||'');
     return direct
-      ? [PRODUCT_SHOPS[shop]+'の商品ページ','この号・版の商品ページへ直接移動',direct]
-      : [PRODUCT_SHOPS[shop]+'で検索','雑誌名・号数・版で検索（個別商品ページ未確認）',searchPages[shop]];
+      ? [PRODUCT_SHOPS[shop]+'｜商品ページへ','この号・版の個別商品ページ（確認済み）',direct]
+      : shop==='tower'
+        ? ['タワーレコード｜書店で検索','検索フォームで下記キーワードを入力',searchPages[shop]]
+        : [PRODUCT_SHOPS[shop]+'｜書店で検索','雑誌名・号数・版を検索（商品ページ未確認）',searchPages[shop]];
   });
   // 紀伊國屋書店など、別途確認された商品ページも失わない。
-  if(safe(productLinks.kinokuniya||''))entries.push(['紀伊國屋書店の商品ページ','この号・版の商品ページへ直接移動',safe(productLinks.kinokuniya)]);
+  if(safe(productLinks.kinokuniya||''))entries.push(['紀伊國屋書店｜商品ページへ','この号・版の個別商品ページ（確認済み）',safe(productLinks.kinokuniya)]);
   const links=entries.map(([name,note,url])=>'<a href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer"><span>'+escapeHtml(name)+' ↗</span><small>'+escapeHtml(note)+'</small></a>').join('');
-  return '<p class="purchase-guide"><strong>購入先の見方</strong>　「商品ページ」は該当する号・版への直接リンク、「検索」は書店で雑誌名・号数・版を検索するリンクです。検索結果に商品がない場合もあります。</p>'+
+  return '<p class="purchase-guide"><strong>購入先の見方</strong>　商品ページを確認できた書店は「商品ページへ」、まだ確認できていない書店は「書店で検索」と表示しています。タワーレコードは検索フォームが開くため、下記の検索キーワードを入力してください。検索結果は該当号・版を保証するものではありません。</p>'+
     '<div class="purchase-links">'+links+'</div>'+
+    '<p class="hint">検索用キーワード：'+escapeHtml(keyword)+'</p>'+
     '<p class="hint">※ 予約受付や在庫があることを保証するものではありません。購入前に号数・版（通常版・増刊など）・表紙・価格・在庫をご確認ください。</p>';
 }
 
