@@ -23,7 +23,8 @@
     ],
     "cover": "inside",
     "bonus": null,
-    "source": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/"
+    "source": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/",
+    "publicVisible": false
   },
   {
     "types": [
@@ -49,7 +50,8 @@
     ],
     "cover": "inside",
     "bonus": null,
-    "source": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/"
+    "source": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/",
+    "publicVisible": false
   },
   {
     "types": [
@@ -75,7 +77,8 @@
     ],
     "cover": "inside",
     "bonus": null,
-    "source": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/"
+    "source": "https://maquia.hpplus.jp/life/news/maquia-magazine-202702/",
+    "publicVisible": false
   },
   {
     "types": [
@@ -106,7 +109,8 @@
     ],
     "cover": "front",
     "bonus": null,
-    "source": "https://be-story.jp/people/296608/"
+    "source": "https://be-story.jp/people/296608/",
+    "publicVisible": true
   },
   {
     "types": [
@@ -137,7 +141,8 @@
     ],
     "cover": "inside",
     "bonus": null,
-    "source": "https://be-story.jp/people/296608/"
+    "source": "https://be-story.jp/people/296608/",
+    "publicVisible": false
   },
   {
     "types": [
@@ -168,7 +173,8 @@
     ],
     "cover": "inside",
     "bonus": null,
-    "source": "https://be-story.jp/people/296608/"
+    "source": "https://be-story.jp/people/296608/",
+    "publicVisible": false
   },
   {
     "types": [
@@ -199,7 +205,8 @@
     ],
     "cover": "front",
     "bonus": true,
-    "source": "https://www.vivi.tv/post497002/"
+    "source": "https://www.vivi.tv/post497002/",
+    "publicVisible": true
   },
   {
     "types": [
@@ -230,7 +237,8 @@
     ],
     "cover": "inside",
     "bonus": true,
-    "source": "https://www.vivi.tv/post494800/"
+    "source": "https://www.vivi.tv/post494800/",
+    "publicVisible": true
   },
   {
     "types": [
@@ -261,7 +269,8 @@
     ],
     "cover": "inside",
     "bonus": true,
-    "source": "https://www.vivi.tv/post494800/"
+    "source": "https://www.vivi.tv/post494800/",
+    "publicVisible": true
   },
   {
     "types": [
@@ -291,7 +300,8 @@
     ],
     "cover": "inside",
     "bonus": true,
-    "source": "https://furoku.net/list/?cat=22"
+    "source": "https://furoku.net/list/?cat=22",
+    "publicVisible": true
   },
   {
     "types": [
@@ -321,7 +331,8 @@
     ],
     "cover": "front",
     "bonus": true,
-    "source": "https://furoku.net/list/?cat=22"
+    "source": "https://furoku.net/list/?cat=22",
+    "publicVisible": true
   },
   {
     "types": [
@@ -352,7 +363,8 @@
     ],
     "cover": "front",
     "bonus": true,
-    "source": "https://myojo.shueisha.co.jp/next/"
+    "source": "https://myojo.shueisha.co.jp/next/",
+    "publicVisible": true
   },
   {
     "types": [
@@ -383,7 +395,8 @@
     ],
     "cover": "front",
     "bonus": true,
-    "source": "https://myojo.shueisha.co.jp/next/"
+    "source": "https://myojo.shueisha.co.jp/next/",
+    "publicVisible": true
   },
   {
     "types": [
@@ -414,7 +427,8 @@
     ],
     "cover": "front",
     "bonus": null,
-    "source": "https://zasshi.tv/products/62851/"
+    "source": "https://zasshi.tv/products/62851/",
+    "publicVisible": true
   },
   {
     "types": [
@@ -445,7 +459,8 @@
     ],
     "cover": "front",
     "bonus": true,
-    "source": "https://barfout.jp/culture/5722/"
+    "source": "https://barfout.jp/culture/5722/",
+    "publicVisible": true
   },
   {
     "types": [
@@ -476,7 +491,8 @@
     ],
     "cover": "front",
     "bonus": true,
-    "source": "https://furoku.net/baila-2027-01-sp/"
+    "source": "https://furoku.net/baila-2027-01-sp/",
+    "publicVisible": true
   },
   {
     "types": [
@@ -507,7 +523,8 @@
     ],
     "cover": "front",
     "bonus": null,
-    "source": "https://www.fujisan.co.jp/product/1281679710/b/2808244/"
+    "source": "https://www.fujisan.co.jp/product/1281679710/b/2808244/",
+    "publicVisible": true
   },
   {
     "types": [
@@ -538,7 +555,8 @@
     ],
     "cover": "inside",
     "bonus": null,
-    "source": "https://www.yodobashi.com/product/100000009004307768/"
+    "source": "https://www.yodobashi.com/product/100000009004307768/",
+    "publicVisible": true
   },
   {
     "types": [
@@ -568,7 +586,8 @@
     ],
     "cover": "front",
     "bonus": null,
-    "source": "https://www.mensnonno.jp/information/magazine/812551/"
+    "source": "https://www.mensnonno.jp/information/magazine/812551/",
+    "publicVisible": true
   },
   {
     "types": [],
@@ -596,6 +615,209 @@
     ],
     "cover": "front",
     "bonus": null,
-    "source": "https://hoshinoshoten.raku-uru.jp/item-detail/1987068"
+    "source": "https://hoshinoshoten.raku-uru.jp/item-detail/1987068",
+    "publicVisible": true
+  },
+  {
+    "types": [],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "巻頭「大人ゴージャスな KEY TO LEMON ver.」。地域版で表紙・企画が異なるとファンの情報まとめに記載。",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "電子版の配信・掲載ページは未確認",
+    "summary": "詳しくは情報元をご確認ください。",
+    "details": "",
+    "shop": "https://store.kadokawa.co.jp/shop/g/g322512001887/",
+    "id": "thetelevision-202701-tokyo",
+    "name": "月刊ザテレビジョン",
+    "issue": "2027年1月号",
+    "edition": "首都圏版",
+    "date": "2026-11-24",
+    "members": [
+      "岩﨑大昇",
+      "井上瑞稀",
+      "中村嶺亜",
+      "猪狩蒼弥",
+      "佐々木大光"
+    ],
+    "cover": "front",
+    "price": 640,
+    "bonus": null,
+    "source": "https://store.kadokawa.co.jp/shop/g/g322512001887/",
+    "publicVisible": true
+  },
+  {
+    "types": [],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "巻頭「あったかキュートな 冬のほっこLIT ver.」。地域版で表紙・企画が異なるとファンの情報まとめに記載。",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "電子版の配信・掲載ページは未確認",
+    "summary": "詳しくは情報元をご確認ください。",
+    "details": "",
+    "shop": "https://store.kadokawa.co.jp/shop/g/g322512001886/",
+    "id": "thetelevision-202701-kansai",
+    "name": "月刊ザテレビジョン",
+    "issue": "2027年1月号",
+    "edition": "関西版",
+    "date": "2026-11-24",
+    "members": [
+      "岩﨑大昇",
+      "井上瑞稀",
+      "中村嶺亜",
+      "猪狩蒼弥",
+      "佐々木大光"
+    ],
+    "cover": "front",
+    "price": 640,
+    "bonus": null,
+    "source": "https://store.kadokawa.co.jp/shop/g/g322512001886/",
+    "publicVisible": true
+  },
+  {
+    "types": [],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LITのスーツ姿・12ページ特集と綴じ込み「社員証ピンナップ」。付録内容は雑誌情報まとめに基づく。",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "電子版の配信・掲載ページは未確認",
+    "summary": "詳しくは情報元をご確認ください。",
+    "details": "",
+    "shop": "https://books.rakuten.co.jp/rb/18894642/",
+    "id": "oggi-202701-special",
+    "name": "Oggi",
+    "issue": "2027年1月号",
+    "edition": "増刊〈特別版〉",
+    "date": "2026-11-28",
+    "members": [
+      "岩﨑大昇",
+      "井上瑞稀",
+      "中村嶺亜",
+      "猪狩蒼弥",
+      "佐々木大光"
+    ],
+    "cover": "front",
+    "price": 1200,
+    "bonus": true,
+    "source": "https://books.rakuten.co.jp/rb/18894642/",
+    "publicVisible": true
+  },
+  {
+    "types": [],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LITが表紙。本文の掲載範囲・ページ数・地域版ごとの差異は未確認。",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "電子版の配信・掲載ページは未確認",
+    "summary": "詳しくは情報元をご確認ください。",
+    "details": "",
+    "shop": "https://www.fujisan.co.jp/product/1747/b/list/",
+    "id": "tvlife-20261218",
+    "name": "TV LIFE",
+    "issue": "2026年12月18日号",
+    "edition": "首都圏版",
+    "date": "2026-12-02",
+    "members": [
+      "岩﨑大昇",
+      "井上瑞稀",
+      "中村嶺亜",
+      "猪狩蒼弥",
+      "佐々木大光"
+    ],
+    "cover": "front",
+    "price": 580,
+    "bonus": null,
+    "source": "https://www.fujisan.co.jp/product/1747/b/list/",
+    "publicVisible": true
+  },
+  {
+    "types": [],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LITスペシャル厚紙カード（とじ込み）。グループ表紙は増刊版のみ。",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "電子版の配信・掲載ページは未確認",
+    "summary": "詳しくは情報元をご確認ください。",
+    "details": "",
+    "shop": "https://www.yodobashi.com/product/100000009004313823/",
+    "id": "baila-202701-normal",
+    "name": "BAILA",
+    "issue": "2027年1月号",
+    "edition": "通常版",
+    "date": "2026-11-28",
+    "members": [
+      "岩﨑大昇",
+      "井上瑞稀",
+      "中村嶺亜",
+      "猪狩蒼弥",
+      "佐々木大光"
+    ],
+    "cover": "inside",
+    "price": 990,
+    "bonus": true,
+    "source": "https://www.yodobashi.com/product/100000009004313823/",
+    "publicVisible": true
+  },
+  {
+    "types": [],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LIT表紙・巻頭グラビア・インタビュー。「和の世界」がテーマの撮影とユーザー提供一覧に記載。佐々木大光は掲載対象外（4名）。",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "電子版の配信・掲載ページは未確認",
+    "summary": "詳しくは情報元をご確認ください。",
+    "details": "",
+    "shop": "https://books.rakuten.co.jp/rb/18882475/",
+    "id": "soda-special-2027",
+    "name": "SODA SPECIAL EDITION",
+    "issue": "2027",
+    "edition": "特別版",
+    "date": "2026-12-07",
+    "members": [
+      "岩﨑大昇",
+      "井上瑞稀",
+      "中村嶺亜",
+      "猪狩蒼弥"
+    ],
+    "cover": "front",
+    "price": 1430,
+    "bonus": null,
+    "source": "https://books.rakuten.co.jp/rb/18882475/",
+    "publicVisible": true
+  },
+  {
+    "types": [],
+    "interviewStatus": "unknown",
+    "featureStatus": "confirmed",
+    "bonusText": "KEY TO LIT表紙、12ページ特集。引き出しピンナップ付きとのユーザー提供一覧。発売日と企画は詳細な公式商品告知を要確認。",
+    "pages": null,
+    "digital": "unknown",
+    "digitalNote": "電子版の配信・掲載ページは未確認",
+    "summary": "詳しくは情報元をご確認ください。",
+    "details": "",
+    "shop": "https://www.andgirl.jp/information",
+    "id": "andgirl-2027winter-extra",
+    "name": "andGIRL",
+    "issue": "2027年冬号",
+    "edition": "増刊（KEY TO LIT表紙版）",
+    "date": "2026-12-07",
+    "members": [
+      "岩﨑大昇",
+      "井上瑞稀",
+      "中村嶺亜",
+      "猪狩蒼弥",
+      "佐々木大光"
+    ],
+    "cover": "front",
+    "price": null,
+    "bonus": null,
+    "source": "https://www.andgirl.jp/information",
+    "publicVisible": true
   }
 ]
