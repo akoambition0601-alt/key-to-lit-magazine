@@ -154,5 +154,29 @@
     "checkedAt": "2026-11-13",
     "source": "https://magazine.rakuten.co.jp/issue/96F7CB0C7499EFE124446EEB4B07A756/",
     "memo": "楽天マガジン公式個別号ページで2026/11/09配信を確認。掲載ページは未確認。"
+  },
+  {
+    "title": "Ray",
+    "service": "rakuten",
+    "issue": "2026年12月号",
+    "status": "yes",
+    "pages": "unknown",
+    "paperDate": "",
+    "releaseDate": "2026-10-23",
+    "checkedAt": "2026-11-13",
+    "source": "https://magazine.rakuten.co.jp/?display=image&genre=w_fashion&p=magazine-list&page=1",
+    "memo": "楽天マガジン公式ファッション一覧に2026年12月号、10/23配信を掲載。KEY TO LIT掲載ページは未確認。"
+  },
+  {
+    "title": "ViVi",
+    "service": "rakuten",
+    "issue": "2026年11・12月合併号",
+    "status": "yes",
+    "pages": "unknown",
+    "paperDate": "",
+    "releaseDate": "2026-09-24",
+    "checkedAt": "2026-11-13",
+    "source": "https://magazine.rakuten.co.jp/biz/title/A10P0/",
+    "memo": "楽天マガジン公式のViViタイトルページに対象号と9/24配信を掲載。KEY TO LIT掲載ページは未確認。"
   }
 ]
