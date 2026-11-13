@@ -248,6 +248,13 @@
 .digital-editorial-note strong{display:block;margin-bottom:3px}
 .digital-service-caution{margin:10px 0;padding:10px 12px;border-radius:7px;background:#f8f6fa;color:#4c4458;font-size:13px;line-height:1.6;white-space:normal;overflow-wrap:anywhere}
 .digital-service-caution strong{display:block;margin-bottom:4px}
+.digital-editorial-note .digital-caution-main{font-weight:750;font-size:13px;margin:6px 0;color:#3e354a}
+.digital-editorial-note .digital-caution-sub{font-size:12px;margin:5px 0 0;color:#60586a}
+.digital-caution-source{font-size:12px;margin:9px 0 0}
+.digital-caution-source a{font-weight:750;text-underline-offset:3px;color:#54426b}
+.digital-service-caution .digital-caution-main{margin:5px 0;font-size:12px;line-height:1.7}
+.digital-service-caution .digital-caution-sub{margin:5px 0;font-size:12px;color:#62586e}
+
 </style>
 </head>
 <body>
@@ -521,10 +528,28 @@ function digitalRecordsFor(m,service){
  return [...PUBLIC_DIGITAL_HISTORY,...personalDigitalHistory].filter(r=>r.title===title&&r.service===service&&r.issue!==m.issue)
  .sort((a,b)=>String(b.paperDate||b.issue).localeCompare(String(a.paperDate||a.issue),'ja')).slice(0,3);
 }
+function digitalCautionHtml(note, source, context){
+ const raw=String(note||'');
+ const isViviPin=/ViVi|ピンナップ/.test(raw)&&/ピンナップ/.test(raw)&&/非収録|収録されない/.test(raw);
+ if(isViviPin){
+  const match=raw.match(/https?:\/\/[^\s\u3000）)]+/);
+  const url=digitalSafeUrl(match?match[0]:source);
+  const title=context==='general'?'電子版に関する注意事項':'他ストアの電子版に関する参考情報';
+  const boxClass=context==='general'?'digital-editorial-note':'digital-service-caution';
+  const first=context==='general'?'KEY TO LITの厚紙ピンナップは、通常電子版には収録されません。':'BOOK☆WALKERでは、ViVi 2027年1月号の通常電子版が11月20日配信予定です。';
+  const second=context==='general'?'※その他のKEY TO LIT掲載内容については未確認です。':'※ピンナップは非収録。Kindle版の配信状況と、その他の掲載内容は未確認です。';
+  return '<div class="'+boxClass+'"><strong>'+title+'</strong><p class="digital-caution-main">'+first+'</p><p class="digital-caution-sub">'+second+'</p>'+(url?'<p class="digital-caution-source"><a href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">出典：BOOK☆WALKERの商品説明を見る</a></p>':'')+'</div>';
+ }
+ const safeSource=digitalSafeUrl(source);
+ const withoutUrls=raw.replace(/https?:\/\/[^\s\u3000）)]+/g,'').replace(/\s{2,}/g,' ').trim();
+ const cls=context==='general'?'digital-editorial-note':'digital-service-caution';
+ const title=context==='general'?'電子版に関する注意事項':'電子版の補足情報（配信状況は別途確認）';
+ return '<div class="'+cls+'"><strong>'+title+'</strong><p class="digital-caution-main">'+escapeHtml(withoutUrls)+'</p>'+(safeSource?'<p class="digital-caution-source"><a href="'+escapeHtml(safeSource)+'" target="_blank" rel="noopener noreferrer">出典を見る</a></p>':'')+'</div>';
+}
 function cardDigitalSummary(m){
  const services=['dmag','rakuten','ku','kindle'];
  const records=[...PUBLIC_DIGITAL_HISTORY,...personalDigitalHistory];
- const generalCaution=(m.digitalNote&&/非収録|一部省略|収録されない|配信予定/.test(m.digitalNote))?'<div class="digital-editorial-note"><strong>電子版に関する注意事項</strong>'+escapeHtml(m.digitalNote)+'</div>':'';
+ const generalCaution=(m.digitalNote&&/非収録|一部省略|収録されない|配信予定/.test(m.digitalNote))?digitalCautionHtml(m.digitalNote,'','general'):'';
  const sections=services.map(service=>{
   const r=records.filter(x=>x.title===magazineFamily(m)&&x.service===service&&x.issue===m.issue&&(!x.magazineId||x.magazineId===m.id))
    .sort((a,b)=>String(b.checkedAt||'').localeCompare(String(a.checkedAt||'')))[0];
@@ -534,7 +559,7 @@ function cardDigitalSummary(m){
   const stateClass=r&&r.status==='yes'?'yes':r&&r.status==='no'?'no':'unknown';
   const pages=r?(r.pages==='yes'?'KEY TO LITの掲載ページも確認済み':r.pages==='partial'?'KEY TO LITの掲載ページは一部確認済み':r.pages==='no'?'KEY TO LITの掲載ページは収録なし':'KEY TO LITの掲載ページは未確認'):'KEY TO LITの掲載ページは未確認';
   const source=r&&digitalSafeUrl(r.source)?'<a href="'+escapeHtml(digitalSafeUrl(r.source))+'" target="_blank" rel="noopener noreferrer">確認元を見る</a>':'';
-  const serviceCaution=(r&&r.memo&&r.source&&/配信予定|非収録|収録されない|掲載内容が異なる/.test(r.memo))?'<div class="digital-service-caution"><strong>電子版の補足情報（配信状況は別途確認）</strong>'+escapeHtml(r.memo)+'</div>':'';
+  const serviceCaution=(r&&r.memo&&r.source&&/配信予定|非収録|収録されない|掲載内容が異なる/.test(r.memo))?digitalCautionHtml(r.memo,r.source,'service'):'';
   const historyItems=history.length?history.map(h=>{
    const url=digitalSafeUrl(h.source);
    const status=h.status==='yes'?'配信あり':h.status==='no'?'配信対象外':'未確認';
