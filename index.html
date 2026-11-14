@@ -777,10 +777,10 @@ function purchaseShopLinks(m){
   const links=shops.map(([key,name,searchUrl])=>{
     const direct=safe(productLinks[key]||'');
     const label=name+(direct?'｜商品ページを見る':'で探す');
-    const sub=direct?'個別商品ページへのリンク':'検索ページへ移動';
+    const sub=direct?'登録済みの商品ページへ':'書店で該当号を探す';
     return '<a href="'+escapeHtml(direct||searchUrl)+'" target="_blank" rel="noopener noreferrer" aria-label="'+escapeHtml(label)+'"><span class="purchase-shop-name">'+escapeHtml(label)+'</span><small>'+escapeHtml(sub)+'</small><span class="purchase-shop-arrow" aria-hidden="true">↗</span></a>';
   }).join('');
-  return '<p class="purchase-guide">購入先を選んでください。商品ページが未登録の場合は検索ページに移動します。</p>'+
+  return '<p class="purchase-guide">購入先を選んでください。リンク先では雑誌名・号数・版を確認してください。</p>'+
     '<div class="purchase-links purchase-main-shops">'+links+'</div>'+
     '<details class="purchase-help"><summary>検索する際の注意点</summary><p>タワーレコードで検索フォームが開いた場合は、次のキーワードを入力してください。</p><p class="purchase-keyword">'+escapeHtml(keyword)+'</p><p>在庫・予約受付状況は各書店でご確認ください。購入前に号数・版・表紙をご確認ください。</p></details>';
 }
