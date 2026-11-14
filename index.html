@@ -488,16 +488,16 @@
 <dialog id="feedbackDialog" aria-labelledby="feedbackHeading">
  <div class="modal-head"><h2 id="feedbackHeading">サイトのご意見・アンケート</h2><button type="button" class="modal-close" id="closeFeedback" aria-label="閉じる">×</button></div>
  <div class="modal-body">
-  <p class="minor">サイト改善のためのアンケートです。すべて任意回答です。</p>
+  <p class="minor">サイト改善のための匿名アンケートです。すべて任意回答で、今後の改善や研究の参考にする場合があります。</p>
   <div class="feedback-fields" style="margin-top:16px">
    <div><label for="feedbackEase">使いやすさ</label><select id="feedbackEase"><option value="">選択してください</option><option>とても使いやすい</option><option>使いやすい</option><option>ふつう</option><option>使いにくい</option><option>とても使いにくい</option></select></div>
    <div><label for="feedbackUseful">便利だった機能</label><select id="feedbackUseful"><option value="">選択してください</option><option>雑誌を探す</option><option>カレンダー</option><option>電子版</option><option>MY MAGAZINE</option><option>まだ分からない</option></select></div>
    <div><label for="feedbackShop">追加してほしい購入先</label><select id="feedbackShop"><option value="">特になし・未回答</option><option>HMV&BOOKS</option><option>ヨドバシ.com</option><option>紀伊國屋書店</option><option>その他</option></select></div>
    <div><label for="feedbackComment">改善してほしい点・追加してほしい機能</label><textarea id="feedbackComment" maxlength="1000" placeholder="自由にご記入ください（任意）"></textarea></div>
   </div>
-  <div class="feedback-note">※ 回答の送信先は現在準備中です。今は回答内容をコピーできます。氏名・連絡先などの個人情報は入力しないでください。</div>
-  <div class="modal-actions"><button type="button" class="btn" id="copyFeedback">回答内容をコピー</button><button type="button" class="btn secondary" id="cancelFeedback">閉じる</button></div>
-  <p class="hint" id="feedbackCopyStatus" aria-live="polite" style="margin-top:9px"></p>
+  <div class="feedback-note" id="feedbackNote">回答送信機能の準備中です。現在は回答内容をコピーできます。氏名・連絡先・注文番号などの個人情報は入力しないでください。</div><div style="display:none"><label for="feedbackWebsite">ウェブサイト</label><input id="feedbackWebsite" tabindex="-1" autocomplete="off"></div>
+  <div class="modal-actions"><button type="button" class="btn" id="sendFeedback" hidden>回答を送信</button><button type="button" class="btn secondary" id="copyFeedback">回答内容をコピー</button><button type="button" class="btn secondary" id="cancelFeedback">閉じる</button></div>
+  <p class="hint" id="feedbackCopyStatus" role="status" aria-live="polite" style="margin-top:9px"></p>
  </div>
 </dialog>
 <dialog id="itemDialog" aria-labelledby="dialogHeading">
@@ -983,20 +983,79 @@ function applyPublicVisibility(){
 Promise.all([loadSheetCatalog(),loadSheetDigital()]).then(loadApprovedMagazines).then(()=>{applyPublicVisibility();init();});
 
 
+/* 初回のGoogle Apps Script公開後、ここへウェブアプリの /exec URL を設定する。 */
+const FEEDBACK_ENDPOINT = '';
 (function(){
  const dialog=document.getElementById('feedbackDialog');
  const open=document.getElementById('openFeedback');
  const close=()=>dialog.close();
+ const send=document.getElementById('sendFeedback');
+ const copy=document.getElementById('copyFeedback');
+ const status=document.getElementById('feedbackCopyStatus');
+ const configured=/^https:\/\/script\.google\.com\/macros\/s\/[a-zA-Z0-9_-]+\/exec$/.test(FEEDBACK_ENDPOINT);
+ const v=id=>document.getElementById(id).value.trim();
+ let pendingId=null;
+ const fields=['feedbackEase','feedbackUseful','feedbackShop','feedbackComment'];
+ const payload=()=>({
+  id:pendingId||(pendingId=crypto.randomUUID()),
+  ease:v('feedbackEase'), useful:v('feedbackUseful'),
+  shop:v('feedbackShop'),comment:v('feedbackComment'),
+  website:v('feedbackWebsite')
+ });
+ if(configured){
+  send.hidden=false;
+  document.getElementById('feedbackNote').textContent='回答はGoogleスプレッドシートへ保存され、サイト改善や今後の研究の参考にする場合があります。氏名・連絡先・注文番号などは入力しないでください。';
+  open.textContent='ご意見・アンケート';
+ }
+ fields.forEach(id=>document.getElementById(id).addEventListener('input',()=>{pendingId=null;status.textContent=''}));
  open.addEventListener('click',()=>dialog.showModal());
  document.getElementById('closeFeedback').addEventListener('click',close);
  document.getElementById('cancelFeedback').addEventListener('click',close);
  dialog.addEventListener('click',event=>{if(event.target===dialog)close()});
- document.getElementById('copyFeedback').addEventListener('click',async()=>{
-  const v=id=>document.getElementById(id).value||'未回答';
-  const answer=['サイトの使い心地アンケート','使いやすさ：'+v('feedbackEase'),'便利だった機能：'+v('feedbackUseful'),'追加希望の購入先：'+v('feedbackShop'),'改善点・要望：'+v('feedbackComment')].join('\n');
-  try{await navigator.clipboard.writeText(answer);document.getElementById('feedbackCopyStatus').textContent='回答内容をコピーしました。現在、サイトへの回答送信機能は準備中です。'}
-  catch(e){document.getElementById('feedbackCopyStatus').textContent='コピーできませんでした。ブラウザのコピー権限をご確認ください。'}
+ copy.addEventListener('click',async()=>{
+  const value=id=>v(id)||'未回答';
+  const answer=['サイトの使い心地アンケート','使いやすさ：'+value('feedbackEase'),'便利だった機能：'+value('feedbackUseful'),'追加希望の購入先：'+value('feedbackShop'),'改善点・要望：'+value('feedbackComment')].join('\n');
+  try{await navigator.clipboard.writeText(answer);status.textContent='回答内容をコピーしました（送信はされていません）。'}
+  catch(e){status.textContent='コピーできませんでした。ブラウザの権限をご確認ください。'}
  });
+ // Apps Scriptはクロスオリジンのため、回答本文を読まずに送信IDだけで保存を検証する。
+ function checkSaved(id){
+  return new Promise(resolve=>{
+   const script=document.createElement('script');
+   let done=false;
+   const finish=ok=>{if(done)return;done=true;clearTimeout(timer);script.remove();delete window.__hokureaFeedbackAck;resolve(ok)};
+   const timer=setTimeout(()=>finish(false),4500);
+   window.__hokureaFeedbackAck=(received,ok)=>{if(received===id)finish(Boolean(ok))};
+   script.onerror=()=>finish(false);
+   script.src=FEEDBACK_ENDPOINT+'?check='+encodeURIComponent(id)+'&t='+Date.now();
+   document.head.appendChild(script);
+  });
+ }
+ send.addEventListener('click',async()=>{
+  if(!configured)return;
+  if(!fields.some(id=>v(id))){
+    status.textContent='少なくとも1項目を回答してから送信してください。';return;
+  }
+  if(v('feedbackWebsite'))return;
+  const data=payload();send.disabled=true;status.textContent='送信して、保存結果を確認しています…';
+  try{
+   await fetch(FEEDBACK_ENDPOINT,{method:'POST',mode:'no-cors',body:new URLSearchParams(data)});
+   let saved=false;
+   for(let attempt=0;attempt<4&&!saved;attempt++){
+    await new Promise(resolve=>setTimeout(resolve,900+attempt*450));
+    saved=await checkSaved(data.id);
+   }
+   if(saved){
+    status.textContent='回答を受け付けました。ご協力ありがとうございます。';
+    fields.forEach(id=>{document.getElementById(id).value=''});
+    pendingId=null;
+   }else{
+    status.textContent='保存の確認ができませんでした。通信環境を確認して、もう一度送信してください。';
+   }
+  }catch(e){status.textContent='通信に失敗しました。もう一度お試しください。'}
+  finally{send.disabled=false}
+ });
+
 })();
 
 </script>
